@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>湯澤医院｜さいたま市西区のかかりつけ診療所｜精神科・心療内科・内科・小児科・皮膚科</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #2A5298;
+    --primary-dark: #1E3A70;
+    --primary-light: #EAF0F7;
+    --accent: #B23A3A;
+    --accent-dark: #8B2626;
+    --accent-light: #F7EBEB;
+    --text: #222222;
+    --text-sub: #555555;
+    --bg: #FFFFFF;
+    --bg-soft: #F7F9FC;
+    --border: #E0E6EE;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Noto Sans JP", "Yu Gothic", sans-serif;
+    color: var(--text);
+    line-height: 1.8;
+    background: var(--bg);
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  .serif { font-family: "Noto Serif JP", serif; }
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---- トップ帯（診療時間・休診情報） ---- */
+  .topbar {
+    background: var(--primary-dark);
+    color: #fff;
+    font-size: 13px;
+  }
+  .topbar .container { display: flex; justify-content: space-between; align-items: center; padding: 8px 24px; }
+  .topbar .info { display: flex; gap: 24px; }
+  .topbar .info span { opacity: 0.9; }
+  @media (max-width: 760px) { .topbar .info { display: none; } }
+
+  /* ---- ヘッダー ---- */
+  .header {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .logo-mark {
+    height: 52px;
+    width: auto;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+  .logo-divider {
+    width: 1px;
+    height: 36px;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-family: "Noto Serif JP", serif;
+    font-weight: 700;
+    color: var(--primary-dark);
+    font-size: 20px;
+    letter-spacing: 0.05em;
+  }
+  .logo-text small { display: block; font-size: 11px; color: var(--text-sub); font-weight: 400; letter-spacing: 0.15em; }
+
+  .nav { display: flex; gap: 28px; font-size: 14px; font-weight: 500; }
+  .nav a { position: relative; padding: 4px 0; color: var(--text); }
+  .nav a:hover { color: var(--primary); }
+  .nav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px; background: var(--primary); transform: scaleX(0); transition: transform 0.2s; }
+  .nav a:hover::after { transform: scaleX(1); }
+
+  .header-cta { display: flex; gap: 10px; align-items: center; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    white-space: nowrap;
+  }
+  .btn-accent { background: var(--accent); color: #fff; }
+  .btn-accent:hover { background: var(--accent-dark); }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-outline { background: #fff; color: var(--primary); border: 2px solid var(--primary); }
+  .btn-outline:hover { background: var(--primary-light); }
+  .btn-large { padding: 16px 36px; font-size: 16px; }
+  .btn-tel {
+    background: var(--accent);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 40px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-tel .num { font-size: 16px; font-weight: 700; }
+  .btn-recruit {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--primary-dark);
+    padding: 10px 16px;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+  .btn-recruit::before { content: '👥'; font-size: 14px; }
+  .btn-recruit:hover { background: var(--primary); }
+
+  .hamburger { display: none; background: none; border: none; font-size: 24px; color: var(--primary-dark); cursor: pointer; }
+
+  @media (max-width: 900px) {
+    .nav { display: none; }
+    .header-cta .btn-recruit { display: none; }
+    .header-cta .btn-tel .num { display: none; }
+  }
+
+  /* ---- ヒーロー（背景に医院外観写真、その上にコピーを重ねる） ---- */
+  .hero {
+    position: relative;
+    min-height: 460px;
+    color: #fff;
+    overflow: hidden;
+    background-color: var(--primary-dark);
+    /* 将来: 医院外観の実写真をbackground-imageに差し替え */
+    background-image:
+      linear-gradient(135deg, rgba(30,58,112,0.82) 0%, rgba(30,58,112,0.55) 50%, rgba(178,58,58,0.40) 100%),
+      radial-gradient(circle at 30% 40%, #3d6aa8 0%, #1E3A70 55%, #0F2448 100%);
+    background-size: cover;
+    background-position: center;
+  }
+  .hero::after {
+    content: '※ 背景には医院外観または診察風景の写真を配置';
+    position: absolute;
+    bottom: 12px; right: 16px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    background: rgba(0,0,0,0.25);
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+  }
+  .hero .container {
+    position: relative;
+    padding: 88px 24px;
+    max-width: 820px;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: #fff;
+    background: rgba(178,58,58,0.9);
+    padding: 6px 16px;
+    border-radius: 2px;
+    margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-family: "Noto Serif JP", serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.5;
+    margin-bottom: 22px;
+    letter-spacing: 0.04em;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.4);
+  }
+  .hero h1 .highlight { color: #FFD6D6; }
+  .hero .lead {
+    font-size: 16px;
+    color: rgba(255,255,255,0.95);
+    margin: 0 auto 32px;
+    line-height: 2;
+    max-width: 680px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+  .hero-cta .btn-outline { background: rgba(255,255,255,0.1); color: #fff; border-color: #fff; }
+  .hero-cta .btn-outline:hover { background: #fff; color: var(--primary-dark); }
+
+  @media (max-width: 860px) {
+    .hero h1 { font-size: 28px; }
+    .hero .container { padding: 56px 24px; }
+    .hero .lead { font-size: 14px; }
+  }
+
+  /* ---- 診療時間カード ---- */
+  .schedule-bar {
+    background: #fff;
+    margin-top: -40px;
+    position: relative;
+    z-index: 2;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(30, 58, 112, 0.1);
+    overflow: hidden;
+  }
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .schedule-grid > div { padding: 24px; text-align: center; border-right: 1px solid var(--border); }
+  .schedule-grid > div:last-child { border-right: none; }
+  .schedule-grid .label {
+    font-size: 12px;
+    color: var(--primary);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+  .schedule-grid .value { font-size: 16px; font-weight: 500; }
+  .schedule-grid .value small { font-size: 12px; color: var(--text-sub); }
+
+  @media (max-width: 680px) {
+    .schedule-grid { grid-template-columns: 1fr; }
+    .schedule-grid > div { border-right: none; border-bottom: 1px solid var(--border); }
+    .schedule-grid > div:last-child { border-bottom: none; }
+  }
+
+  /* ---- 当院について（ミニ版） ---- */
+  .about-mini { padding: 48px 0 !important; background: var(--bg-soft); }
+  .about-mini-box {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--accent);
+    border-radius: 8px;
+    padding: 24px 28px;
+  }
+  .about-mini-badge {
+    flex-shrink: 0;
+    width: 88px; height: 88px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Noto Serif JP", serif;
+    line-height: 1;
+  }
+  .about-mini-badge .num { font-size: 28px; font-weight: 700; }
+  .about-mini-badge .unit { font-size: 10px; letter-spacing: 0.18em; margin-top: 4px; }
+  .about-mini-text { flex: 1; min-width: 0; }
+  .about-mini-lead { font-size: 11px; color: var(--accent); font-weight: 700; letter-spacing: 0.2em; margin-bottom: 4px; }
+  .about-mini-text h2 {
+    font-family: "Noto Serif JP", serif;
+    font-size: 22px;
+    color: var(--primary-dark);
+    font-weight: 700;
+    margin: 0 0 8px;
+    line-height: 1.5;
+  }
+  .about-mini-text p { margin: 0; font-size: 14px; color: var(--text); line-height: 1.85; }
+  .about-mini-btn { flex-shrink: 0; white-space: nowrap; }
+  @media (max-width: 760px) {
+    .about-mini-box { flex-direction: column; text-align: center; }
+  }
+
+  /* ---- 当院について（旧teaser用、残置） ---- */
+  .about-teaser { background: var(--bg-soft); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .about-image {
+    aspect-ratio: 4/5;
+    background: linear-gradient(135deg, var(--primary-light) 0%, #fff 100%);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-dark);
+    font-size: 13px;
+    position: relative;
+  }
+  .about-image::before {
+    content: '医院外観 or 創業当時の写真';
+    padding: 10px 20px;
+    background: #fff;
+    border: 1px dashed var(--primary);
+    border-radius: 4px;
+  }
+  .about-image .stamp {
+    position: absolute;
+    top: 24px; left: 24px;
+    background: var(--accent);
+    color: #fff;
+    padding: 14px 18px;
+    border-radius: 50%;
+    width: 90px; height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 16px rgba(178,58,58,0.3);
+    font-family: "Noto Serif JP", serif;
+  }
+  .about-image .stamp .num { font-size: 26px; font-weight: 700; line-height: 1; }
+  .about-image .stamp .unit { font-size: 10px; letter-spacing: 0.15em; margin-top: 4px; }
+  .about-text .lead-in { font-size: 13px; color: var(--accent); font-weight: 700; letter-spacing: 0.3em; margin-bottom: 12px; }
+  .about-text h2 { font-family: "Noto Serif JP", serif; font-size: 28px; color: var(--primary-dark); line-height: 1.5; margin-bottom: 20px; }
+  .about-text h2 small { display: block; font-size: 14px; color: var(--text-sub); font-weight: 400; margin-top: 6px; font-family: "Noto Sans JP", sans-serif; }
+  .about-text p { font-size: 15px; color: var(--text); line-height: 2; margin-bottom: 16px; }
+  .about-values {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .about-values div {
+    padding: 14px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    border-top: 3px solid var(--primary);
+  }
+  @media (max-width: 760px) {
+    .about-grid { grid-template-columns: 1fr; gap: 24px; }
+    .about-image { max-width: 340px; margin: 0 auto; aspect-ratio: 4/3; }
+  }
+
+  /* ---- 提供サービス（services）コンパクト版 ---- */
+  .services { background: var(--primary-light); padding: 56px 0 !important; }
+  .services-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .service-item {
+    background: #fff;
+    padding: 10px 18px 10px 40px;
+    border-radius: 24px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--primary-dark);
+    position: relative;
+    border: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  .service-item::before {
+    content: '✓';
+    position: absolute;
+    left: 12px; top: 50%;
+    transform: translateY(-50%);
+    width: 20px; height: 20px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  /* 英語対応バッジ */
+  .english-notice {
+    margin-top: 32px;
+    background: #fff;
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .english-notice .flag {
+    flex-shrink: 0;
+    width: 52px; height: 52px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 20px;
+    font-family: "Noto Serif JP", serif;
+  }
+  .english-notice .text { flex: 1; }
+  .english-notice .text strong { display: block; color: var(--primary-dark); font-size: 15px; margin-bottom: 4px; }
+  .english-notice .text p { margin: 0; font-size: 13px; color: var(--text-sub); line-height: 1.7; }
+
+  /* ---- セクション共通 ---- */
+  section { padding: 80px 0; }
+  .sec-head { text-align: center; margin-bottom: 48px; }
+  .sec-head .en {
+    display: block;
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    margin-bottom: 8px;
+  }
+  .sec-head h2 {
+    font-family: "Noto Serif JP", serif;
+    font-size: 32px;
+    color: var(--primary-dark);
+    font-weight: 700;
+    line-height: 1.4;
+  }
+  .sec-head h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: var(--accent);
+    margin: 16px auto 0;
+  }
+
+  /* ---- 診療科のご案内 ---- */
+  /* 重点2科（大カード） */
+  .dept-featured-label {
+    text-align: center;
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    margin-bottom: 20px;
+  }
+  .dept-featured-label::before, .dept-featured-label::after {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    background: var(--accent);
+    vertical-align: middle;
+    margin: 0 12px;
+  }
+  .dept-featured {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+  .dept-card {
+    padding: 36px;
+    background: #fff;
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(178, 58, 58, 0.08);
+  }
+  .dept-card .ribbon {
+    position: absolute;
+    top: 12px; right: -30px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 36px;
+    transform: rotate(35deg);
+    letter-spacing: 0.1em;
+  }
+  .dept-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(178, 58, 58, 0.15); }
+  .dept-card .cat {
+    font-family: "Noto Serif JP", serif;
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    margin-bottom: 8px;
+  }
+  .dept-card h3 {
+    font-family: "Noto Serif JP", serif;
+    font-size: 28px;
+    color: var(--primary-dark);
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+  .dept-card p { color: var(--text); font-size: 15px; margin-bottom: 18px; line-height: 1.9; }
+  .dept-card ul { list-style: none; }
+  .dept-card li {
+    font-size: 14px;
+    padding: 6px 0 6px 22px;
+    position: relative;
+    color: var(--text);
+  }
+  .dept-card li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 14px;
+    width: 12px; height: 2px;
+    background: var(--accent);
+  }
+
+  /* 担当医（診療科カード内） */
+  .dept-doctor {
+    margin-top: 24px;
+    padding: 16px;
+    background: var(--bg-soft);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: all 0.2s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .dept-doctor:hover { background: var(--accent-light); }
+  .dept-doctor-photo {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-light) 0%, #fff 100%);
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--text-sub);
+    text-align: center;
+    line-height: 1.2;
+  }
+  .dept-doctor-info { flex: 1; min-width: 0; }
+  .dept-doctor-info .label { font-size: 11px; color: var(--accent); font-weight: 700; letter-spacing: 0.1em; }
+  .dept-doctor-info .name { font-family: "Noto Serif JP", serif; font-size: 17px; font-weight: 700; color: var(--primary-dark); margin: 2px 0; }
+  .dept-doctor-info .role { font-size: 12px; color: var(--text-sub); }
+  .dept-doctor-arrow { font-size: 18px; color: var(--accent); flex-shrink: 0; }
+
+  /* その他3科（小カード） */
+  .dept-others-label {
+    text-align: center;
+    font-size: 13px;
+    color: var(--primary);
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    margin-bottom: 20px;
+  }
+  .dept-others-label::before, .dept-others-label::after {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    background: var(--primary);
+    vertical-align: middle;
+    margin: 0 12px;
+  }
+  .dept-others {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .dept-sub {
+    padding: 24px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--primary);
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+  .dept-sub:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(30, 58, 112, 0.08); }
+  .dept-sub .cat { font-family: "Noto Serif JP", serif; font-size: 11px; color: var(--primary); font-weight: 700; letter-spacing: 0.2em; margin-bottom: 6px; }
+  .dept-sub h4 { font-family: "Noto Serif JP", serif; font-size: 20px; color: var(--primary-dark); margin-bottom: 10px; font-weight: 700; }
+  .dept-sub p { font-size: 13px; color: var(--text-sub); line-height: 1.8; margin-bottom: 12px; }
+  .dept-sub-doctor { font-size: 12px; color: var(--text); padding-top: 10px; border-top: 1px dashed var(--border); }
+  .dept-sub-doctor a { color: var(--primary); font-weight: 700; }
+  .dept-sub-doctor a:hover { text-decoration: underline; }
+
+  @media (max-width: 760px) {
+    .dept-featured { grid-template-columns: 1fr; }
+    .dept-others { grid-template-columns: 1fr; }
+    .dept-card { padding: 28px; }
+    .dept-card h3 { font-size: 22px; }
+  }
+
+
+  /* ---- Web予約セクション ---- */
+  .reserve {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: #fff;
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .reserve::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+  .reserve .container { position: relative; text-align: center; }
+  .reserve .en { color: #FFB3B3; font-size: 13px; font-weight: 700; letter-spacing: 0.3em; margin-bottom: 8px; display: block; }
+  .reserve h2 {
+    font-family: "Noto Serif JP", serif;
+    font-size: 32px;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  .reserve p { font-size: 16px; opacity: 0.95; margin-bottom: 32px; }
+  .reserve-cta {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .reserve-cta .btn-accent { padding: 18px 40px; font-size: 17px; }
+  .reserve-tel {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: rgba(255,255,255,0.15);
+    border: 2px solid #fff;
+    border-radius: 40px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .reserve-tel:hover { background: #fff; color: var(--primary-dark); }
+
+  @media (max-width: 680px) {
+    .reserve h2 { font-size: 24px; }
+    .reserve-cta { flex-direction: column; align-items: center; }
+    .reserve-tel, .reserve-cta .btn-accent { width: 100%; max-width: 320px; justify-content: center; }
+  }
+
+  /* ---- お知らせ ---- */
+  .news { background: var(--bg-soft); }
+  .news-list {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .news-item {
+    display: grid;
+    grid-template-columns: 110px 120px 1fr;
+    gap: 20px;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+    transition: background 0.2s;
+  }
+  .news-item:last-child { border-bottom: none; }
+  .news-item:hover { background: var(--primary-light); }
+  .news-date { font-size: 13px; color: var(--text-sub); font-family: monospace; }
+  .news-cat {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 3px;
+    text-align: center;
+  }
+  .news-cat.important { background: var(--accent); color: #fff; }
+  .news-cat.notice { background: var(--primary); color: #fff; }
+  .news-cat.info { background: var(--primary-light); color: var(--primary-dark); }
+  .news-title { font-size: 15px; color: var(--text); font-weight: 500; }
+  .news-more { text-align: center; margin-top: 32px; }
+
+  @media (max-width: 680px) {
+    .news-item { grid-template-columns: 1fr; gap: 8px; padding: 16px 20px; }
+    .news-cat { justify-self: start; }
+  }
+
+  /* ---- 医師紹介プレビュー ---- */
+  .doctor {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 48px;
+    align-items: center;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .doctor-photo {
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, var(--primary-light) 0%, #fff 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-dark);
+    font-size: 13px;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+  .doctor-photo::before {
+    content: '医師の顔写真';
+    padding: 8px 16px;
+    background: rgba(255,255,255,0.9);
+    border: 1px dashed var(--primary);
+    border-radius: 4px;
+  }
+  .doctor-info .cat {
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    margin-bottom: 8px;
+  }
+  .doctor-info h3 {
+    font-family: "Noto Serif JP", serif;
+    font-size: 28px;
+    color: var(--primary-dark);
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .doctor-info .name {
+    font-family: "Noto Serif JP", serif;
+    font-size: 20px;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+  .doctor-info .name small { color: var(--text-sub); font-size: 14px; margin-left: 12px; }
+  .doctor-info p { color: var(--text); line-height: 2; margin-bottom: 24px; font-size: 15px; }
+
+  @media (max-width: 760px) {
+    .doctor { grid-template-columns: 1fr; gap: 32px; }
+    .doctor-photo { max-width: 300px; margin: 0 auto; }
+  }
+
+  /* ---- アクセス ---- */
+  .access { background: var(--bg-soft); }
+  .access-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: stretch;
+  }
+  .access-info {
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+  .access-info h3 {
+    font-family: "Noto Serif JP", serif;
+    font-size: 22px;
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .access-info dl { display: grid; grid-template-columns: 100px 1fr; gap: 12px 20px; }
+  .access-info dt { font-size: 13px; color: var(--primary); font-weight: 700; padding-top: 4px; }
+  .access-info dd { font-size: 15px; color: var(--text); }
+  .access-map {
+    background: var(--primary-light);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-dark);
+    font-size: 14px;
+    min-height: 320px;
+    border: 1px solid var(--border);
+  }
+  .access-map::before {
+    content: '📍 Googleマップを埋め込み';
+    padding: 10px 20px;
+    background: #fff;
+    border-radius: 4px;
+    border: 1px dashed var(--primary);
+  }
+
+  @media (max-width: 760px) {
+    .access-grid { grid-template-columns: 1fr; }
+    .access-info { padding: 28px; }
+  }
+
+  /* ---- 診療時間テーブル ---- */
+  .hours-section { background: #fff; }
+  .hours-table {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .hours-table table { width: 100%; border-collapse: collapse; }
+  .hours-table th, .hours-table td {
+    padding: 16px 12px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .hours-table th { background: var(--primary); color: #fff; font-weight: 500; }
+  .hours-table td:first-child { background: var(--primary-light); color: var(--primary-dark); font-weight: 700; width: 110px; }
+  .hours-table td:last-child, .hours-table th:last-child { border-right: none; }
+  .hours-table tr:last-child td { border-bottom: none; }
+  .hours-note { font-size: 13px; color: var(--text-sub); margin-top: 16px; text-align: center; }
+
+  /* ---- フッター ---- */
+  footer {
+    background: var(--primary-dark);
+    color: #fff;
+    padding: 60px 0 20px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .footer-logo { margin-bottom: 20px; }
+  .footer-logo .logo-text { color: #fff; }
+  .footer-logo .logo-text small { color: rgba(255,255,255,0.6); }
+  .footer-info p { font-size: 14px; opacity: 0.85; margin-bottom: 6px; }
+  .footer-col h4 {
+    font-family: "Noto Serif JP", serif;
+    font-size: 15px;
+    margin-bottom: 16px;
+    color: #fff;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 8px; }
+  .footer-col a { font-size: 13px; opacity: 0.85; }
+  .footer-col a:hover { opacity: 1; color: var(--accent-light); }
+  .copyright {
+    text-align: center;
+    font-size: 12px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    opacity: 0.6;
+  }
+
+  @media (max-width: 760px) {
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  /* ---- 注釈バー ---- */
+  .mockup-note {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    background: rgba(30, 58, 112, 0.95);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    z-index: 1000;
+    max-width: 280px;
+    line-height: 1.6;
+  }
+  .mockup-note strong { color: #FFD6D6; }
+</style>
+</head>
+<body>
+
+<!-- 上部の診療時間バー -->
+<div class="topbar">
+  <div class="container">
+    <div class="info">
+      <span>診療時間：8:30～12:00 / 14:45～18:00</span>
+      <span>休診日：日曜・祝日</span>
+    </div>
+    <div>🏥 医療法人 博滇会グループ</div>
+  </div>
+</div>
+
+<!-- ヘッダー -->
+<header class="header">
+  <div class="container">
+    <a href="#" class="logo">
+      <img class="logo-mark" src="hakushinkai_logo.png" alt="医療法人 博滇会">
+      <div class="logo-divider"></div>
+      <div class="logo-text">
+        湯澤医院
+        <small>YUZAWA CLINIC</small>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="#about">当院について</a>
+      <a href="#departments">診療科</a>
+      <a href="#services">サービス</a>
+      <a href="#doctor">医師紹介</a>
+      <a href="#news">お知らせ</a>
+    </nav>
+    <div class="header-cta">
+      <a href="#" class="btn-recruit">求人情報</a>
+      <a href="tel:0486243974" class="btn-tel">☎ <span class="num">048-624-3974</span></a>
+      <a href="#" class="btn btn-accent">Web予約</a>
+    </div>
+  </div>
+</header>
+
+<!-- ヒーロー -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">創業86年　地域とともに</div>
+    <h1>何でも相談できる<br><span class="highlight">かかりつけ診療所</span>として</h1>
+    <p class="lead">
+      昭和5年の開院以来、さいたま市西区西遊馬で地域の皆さまの健康と暮らしを支え続けてまいりました。<br>
+      赤ちゃんからご高齢の方まで、こころと体の両面から、保健・医療・福祉を包括したチーム医療をご提供します。
+    </p>
+    <div class="hero-cta">
+      <a href="#" class="btn btn-accent btn-large">Web予約はこちら</a>
+      <a href="#departments" class="btn btn-outline btn-large">診療のご案内</a>
+    </div>
+  </div>
+</section>
+
+<!-- 診療時間クイックインフォ -->
+<div class="container">
+  <div class="schedule-bar">
+    <div class="schedule-grid">
+      <div>
+        <div class="label">DIAGNOSIS HOURS</div>
+        <div class="value">8:30～12:00<br><small>/ 14:45～18:00</small></div>
+      </div>
+      <div>
+        <div class="label">CLOSED</div>
+        <div class="value">日曜・祝日<br><small>※金曜の小児科は休診</small></div>
+      </div>
+      <div>
+        <div class="label">ACCESS</div>
+        <div class="value">さいたま市西区<br><small>西遊馬1260-1</small></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- お知らせ（診療時間のすぐ下） -->
+<section id="news" class="news">
+  <div class="container">
+    <div class="sec-head">
+      <span class="en">NEWS</span>
+      <h2>お知らせ</h2>
+    </div>
+    <div class="news-list">
+      <div class="news-item">
+        <div class="news-date">2026.04.15</div>
+        <span class="news-cat important">重要</span>
+        <div class="news-title">ゴールデンウィーク期間中の休診日について</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">2026.04.01</div>
+        <span class="news-cat notice">予防接種</span>
+        <div class="news-title">小児定期予防接種のご予約を受付中です</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">2026.03.20</div>
+        <span class="news-cat info">お知らせ</span>
+        <div class="news-title">インターネット予約システムのご案内</div>
+      </div>
+    </div>
+    <div class="news-more">
+      <a href="#" class="btn btn-outline">お知らせ一覧を見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- 当院について（ティザー・ミニ版） -->
+<section class="about-mini" id="about">
+  <div class="container">
+    <div class="about-mini-box">
+      <div class="about-mini-badge">
+        <span class="num">86</span>
+        <span class="unit">YEARS</span>
+      </div>
+      <div class="about-mini-text">
+        <div class="about-mini-lead">ABOUT — 創業昭和5年（1930）</div>
+        <h2>地域に根差した、チーム医療。</h2>
+        <p>86年の歴史の中で培ってきた経験と地域との絆を大切に、保健・医療・福祉を包括した「何でも相談できる診療所」を目指しています。</p>
+      </div>
+      <a href="#" class="btn btn-primary about-mini-btn">医院紹介を詳しく見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- 診療科のご案内 -->
+<section id="departments">
+  <div class="container">
+    <div class="sec-head">
+      <span class="en">DEPARTMENTS</span>
+      <h2>診療科のご案内</h2>
+    </div>
+
+    <!-- 特色ある診療（精神科・心療内科 / 認知症相談） -->
+    <div class="dept-featured-label">当院の特色ある診療</div>
+    <div class="dept-featured">
+      <div class="dept-card">
+        <div class="ribbon">特色診療</div>
+        <div class="cat">PSYCHIATRY / PSYCHOSOMATIC</div>
+        <h3>精神科・心療内科</h3>
+        <p>うつ・不安・不眠などこころの不調や、ストレスが体に影響する症状に、丁寧にお話をうかがい、安心して通院いただける診療を心がけています。お子さまの心のカウンセリングにも対応しています。</p>
+        <ul>
+          <li>うつ病・適応障害</li>
+          <li>不安障害・パニック障害・不眠症</li>
+          <li>ストレス関連のご相談</li>
+          <li>お子さまの心のカウンセリング</li>
+        </ul>
+        <a href="#doctor" class="dept-doctor">
+          <div class="dept-doctor-photo">顔写真</div>
+          <div class="dept-doctor-info">
+            <div class="label">担当医 / DOCTOR</div>
+            <div class="name">湯澤 ○○</div>
+            <div class="role">精神科専門医</div>
+          </div>
+          <div class="dept-doctor-arrow">→</div>
+        </a>
+      </div>
+      <div class="dept-card">
+        <div class="ribbon">特色診療</div>
+        <div class="cat">DEMENTIA CARE</div>
+        <h3>認知症相談</h3>
+        <p>ご本人の変化にお気づきのご家族も、ご本人も安心してご相談いただける外来です。認知症高齢者を抱えるご家族の心配事も、まずはご相談ください。早期発見・早期対応を大切に、生活を支えます。</p>
+        <ul>
+          <li>物忘れ・認知症のご相談</li>
+          <li>認知機能検査</li>
+          <li>ご家族への対応アドバイス</li>
+          <li>介護・福祉との連携</li>
+        </ul>
+        <a href="#doctor" class="dept-doctor">
+          <div class="dept-doctor-photo">顔写真</div>
+          <div class="dept-doctor-info">
+            <div class="label">担当医 / DOCTOR</div>
+            <div class="name">湯澤 ○○</div>
+            <div class="role">認知症サポート医</div>
+          </div>
+          <div class="dept-doctor-arrow">→</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- その他の診療科 -->
+    <div class="dept-others-label">その他の診療科</div>
+    <div class="dept-others" style="grid-template-columns: repeat(4, 1fr);">
+      <div class="dept-sub">
+        <div class="cat">INTERNAL MEDICINE</div>
+        <h4>内科</h4>
+        <p>かぜ・発熱などの急な症状から、生活習慣病の管理まで幅広く対応します。</p>
+        <div class="dept-sub-doctor">担当：湯澤 ○○　<a href="#doctor">医師紹介 →</a></div>
+      </div>
+      <div class="dept-sub">
+        <div class="cat">PEDIATRICS</div>
+        <h4>小児科</h4>
+        <p>お子さまの急な発熱、予防接種、乳幼児健診などに対応します。</p>
+        <div class="dept-sub-doctor">担当：湯澤 ○○　<a href="#doctor">医師紹介 →</a></div>
+      </div>
+      <div class="dept-sub">
+        <div class="cat">DERMATOLOGY</div>
+        <h4>皮膚科</h4>
+        <p>湿疹・かぶれ・にきびなど、日常的な皮膚トラブルのご相談を承ります。</p>
+        <div class="dept-sub-doctor">担当：湯澤 ○○　<a href="#doctor">医師紹介 →</a></div>
+      </div>
+      <div class="dept-sub">
+        <div class="cat">FEVER CLINIC</div>
+        <h4>発熱外来</h4>
+        <p>発熱症状のある方向けの外来です。来院前にお電話でご連絡ください。</p>
+        <div class="dept-sub-doctor">担当：湯澤 ○○　<a href="#doctor">医師紹介 →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 提供サービス -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="sec-head">
+      <span class="en">SERVICES</span>
+      <h2>提供サービス</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-item">さいたま市特定検診</div>
+      <div class="service-item">各種検査</div>
+      <div class="service-item">予防接種</div>
+      <div class="service-item">在宅医療・訪問診療</div>
+      <div class="service-item">心理相談</div>
+      <div class="service-item">栄養相談</div>
+    </div>
+
+    <!-- 英語対応 -->
+    <div class="english-notice">
+      <div class="flag">EN</div>
+      <div class="text">
+        <strong>英語での診療に対応しています（山本医師）／English consultation available</strong>
+        <p>English speakers are welcomed. Please contact us by phone. ／ お電話にてお問い合わせください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Web予約 -->
+<section class="reserve">
+  <div class="container">
+    <span class="en">ONLINE RESERVATION</span>
+    <h2>待ち時間を短く、スムーズな受診を</h2>
+    <p>Web予約システムなら24時間いつでもご予約いただけます。<br>お電話でのご予約もお気軽にどうぞ。</p>
+    <div class="reserve-cta">
+      <a href="#" class="btn btn-accent btn-large">Web予約はこちら</a>
+      <a href="tel:0486243974" class="reserve-tel">☎ 048-624-3974</a>
+    </div>
+  </div>
+</section>
+
+<!-- 医師紹介 -->
+<section id="doctor">
+  <div class="container">
+    <div class="sec-head">
+      <span class="en">DOCTOR</span>
+      <h2>医師のご紹介</h2>
+    </div>
+    <div class="doctor">
+      <div class="doctor-photo"></div>
+      <div class="doctor-info">
+        <div class="cat">MESSAGE</div>
+        <h3>患者さまへのメッセージ</h3>
+        <div class="name">院長　湯澤 ○○<small>YUZAWA ○○</small></div>
+        <p>
+          湯澤医院は、昭和5年の開院以来、地域の皆さまに長く親しんでいただけるかかりつけ診療所を目指しております。精神科・心療内科・内科・小児科・皮膚科の診療を通じて、赤ちゃんからご高齢の方まで、こころと体の両面を支えるチーム医療を実践しています。何でも相談できる場所でありたいと考えています。どうぞお気軽にご相談ください。
+        </p>
+        <a href="#" class="btn btn-primary">医師紹介を詳しく見る</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 診療時間表 -->
+<section class="hours-section">
+  <div class="container">
+    <div class="sec-head">
+      <span class="en">HOURS</span>
+      <h2>診療時間</h2>
+    </div>
+    <div class="hours-table">
+      <table>
+        <thead>
+          <tr>
+            <th>時間</th>
+            <th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日・祝</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>8:30 - 12:00</td>
+            <td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>—</td>
+          </tr>
+          <tr>
+            <td>14:45 - 18:00</td>
+            <td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>—</td><td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="hours-note">※ 小児科は金曜休診　※ 受付は診療終了15分前までとなります</p>
+  </div>
+</section>
+
+<!-- アクセス -->
+<section id="access" class="access">
+  <div class="container">
+    <div class="sec-head">
+      <span class="en">ACCESS</span>
+      <h2>アクセス</h2>
+    </div>
+    <div class="access-grid">
+      <div class="access-info">
+        <h3>医院情報</h3>
+        <dl>
+          <dt>所在地</dt>
+          <dd>〒331-0061<br>さいたま市西区西遊馬1260-1</dd>
+          <dt>電話番号</dt>
+          <dd>048-624-3974</dd>
+          <dt>診療科目</dt>
+          <dd>精神科・心療内科・内科・小児科・皮膚科・発熱外来</dd>
+          <dt>駐車場</dt>
+          <dd>あり（○台）</dd>
+          <dt>アクセス</dt>
+          <dd>○○駅から徒歩○分</dd>
+        </dl>
+      </div>
+      <div class="access-map"></div>
+    </div>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          <div class="logo-text">
+            湯澤医院
+            <small>YUZAWA CLINIC</small>
+          </div>
+        </div>
+        <div class="footer-info">
+          <p>〒331-0061 さいたま市西区西遊馬1260-1</p>
+          <p>TEL: 048-624-3974</p>
+          <p>精神科・心療内科・内科・小児科・皮膚科・発熱外来</p>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>サイトメニュー</h4>
+        <ul>
+          <li><a href="#">トップ</a></li>
+          <li><a href="#departments">診療科のご案内</a></li>
+          <li><a href="#doctor">医師紹介</a></li>
+          <li><a href="#access">医院紹介</a></li>
+          <li><a href="#news">お知らせ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>関連リンク</h4>
+        <ul>
+          <li><a href="#">Web予約</a></li>
+          <li><a href="#">求人情報</a></li>
+          <li><a href="#">医療法人 博滇会グループ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">© 湯澤医院 / 医療法人 博滇会</div>
+  </div>
+</footer>
+
+<!-- モックアップ用の注釈 -->
+<div class="mockup-note">
+  <strong>※ モックアップ</strong><br>
+  博滇会ロゴを反映しました。写真・医師名・地図は仮置きです。
+</div>
+
+</body>
+</html>
