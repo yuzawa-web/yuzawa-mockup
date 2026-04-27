@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>医院紹介｜湯澤医院｜さいたま市西区のかかりつけ診療所</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #2A5298;
+    --primary-dark: #1E3A70;
+    --primary-light: #EAF0F7;
+    --accent: #B23A3A;
+    --accent-dark: #8B2626;
+    --accent-light: #F7EBEB;
+    --text: #222222;
+    --text-sub: #555555;
+    --bg: #FFFFFF;
+    --bg-soft: #F7F9FC;
+    --border: #E0E6EE;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Zen Kaku Gothic New", "Yu Gothic", sans-serif;
+    color: var(--text);
+    line-height: 1.8;
+    background: var(--bg);
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  .serif { font-family: "Zen Maru Gothic", sans-serif; }
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  /* スクロールでフワッと現れる動き */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ---- トップ帯 ---- */
+  .topbar { background: var(--primary-dark); color: #fff; font-size: 13px; }
+  .topbar .container { display: flex; justify-content: space-between; align-items: center; padding: 8px 24px; }
+  .topbar .info { display: flex; gap: 24px; }
+  .topbar .info span { opacity: 0.9; }
+  @media (max-width: 760px) { .topbar .info { display: none; } }
+
+  /* ---- ヘッダー ---- */
+  .header { background: #fff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+  .header .container { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; }
+  .logo { display: flex; align-items: center; gap: 14px; }
+  .logo-mark { height: 52px; width: auto; flex-shrink: 0; object-fit: contain; }
+  .logo-divider { width: 1px; height: 36px; background: var(--border); flex-shrink: 0; }
+  .logo-text { font-family: "Zen Maru Gothic", sans-serif; font-weight: 700; color: var(--primary-dark); font-size: 20px; letter-spacing: 0.05em; }
+  .logo-text small { display: block; font-size: 11px; color: var(--text-sub); font-weight: 400; letter-spacing: 0.15em; }
+  .nav { display: flex; gap: 28px; font-size: 14px; font-weight: 500; }
+  .nav a { position: relative; padding: 4px 0; color: var(--text); }
+  .nav a:hover, .nav a.active { color: var(--primary); }
+  .nav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px; background: var(--primary); transform: scaleX(0); transition: transform 0.2s; }
+  .nav a:hover::after, .nav a.active::after { transform: scaleX(1); }
+  .header-cta { display: flex; gap: 10px; align-items: center; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 4px; font-size: 14px; font-weight: 700; transition: all 0.2s; border: none; cursor: pointer; font-family: inherit; white-space: nowrap; }
+  .btn-accent { background: var(--accent); color: #fff; }
+  .btn-accent:hover { background: var(--accent-dark); }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-outline { background: #fff; color: var(--primary); border: 2px solid var(--primary); }
+  .btn-outline:hover { background: var(--primary-light); }
+  .btn-large { padding: 16px 36px; font-size: 16px; }
+  .btn-tel { background: var(--accent); color: #fff; padding: 10px 18px; border-radius: 40px; display: inline-flex; align-items: center; gap: 6px; }
+  .btn-tel .num { font-size: 16px; font-weight: 700; }
+  .btn-recruit { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #fff; background: var(--primary-dark); padding: 10px 16px; border-radius: 4px; transition: all 0.2s; }
+  .btn-recruit::before { content: '👥'; font-size: 14px; }
+  .btn-recruit:hover { background: var(--primary); }
+  @media (max-width: 900px) {
+    .nav { display: none; }
+    .header-cta .btn-recruit { display: none; }
+    .header-cta .btn-tel .num { display: none; }
+  }
+
+  /* ---- ページヒーロー（小型） ---- */
+  .page-hero {
+    position: relative;
+    color: #fff;
+    overflow: hidden;
+    background-color: var(--primary-dark);
+    background-image:
+      linear-gradient(135deg, rgba(30,58,112,0.78) 0%, rgba(30,58,112,0.55) 50%, rgba(178,58,58,0.40) 100%),
+      url('hero_clinic.jpg');
+    background-size: cover;
+    background-position: center 35%;
+    padding: 60px 0 50px;
+    text-align: center;
+  }
+  .page-hero h1 {
+    font-family: "Zen Maru Gothic", sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.35);
+    margin-bottom: 8px;
+  }
+  .page-hero .en {
+    font-size: 12px;
+    letter-spacing: 0.4em;
+    color: rgba(255,255,255,0.85);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .breadcrumb {
+    font-size: 12px;
+    color: rgba(255,255,255,0.85);
+  }
+  .breadcrumb a { color: rgba(255,255,255,0.95); text-decoration: underline; text-underline-offset: 3px; }
+  .breadcrumb span { margin: 0 8px; opacity: 0.6; }
+
+  /* ---- セクション共通 ---- */
+  section { padding: 72px 0; }
+  .sec-head { text-align: center; margin-bottom: 44px; }
+  .sec-head .en {
+    display: block;
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    margin-bottom: 8px;
+  }
+  .sec-head h2 {
+    font-family: "Zen Maru Gothic", sans-serif;
+    font-size: 30px;
+    color: var(--primary-dark);
+    font-weight: 700;
+    line-height: 1.5;
+  }
+  .sec-head h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: var(--accent);
+    margin: 16px auto 0;
+  }
+
+  /* ---- 理念 ---- */
+  .philosophy { background: var(--bg-soft); }
+  .philosophy-lead {
+    text-align: center;
+    font-size: 17px;
+    line-height: 2.1;
+    max-width: 760px;
+    margin: 0 auto 40px;
+    color: var(--text);
+  }
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .pillar {
+    background: #fff;
+    border-radius: 12px;
+    padding: 32px 28px;
+    text-align: center;
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--accent);
+  }
+  .pillar:nth-child(2) { border-top-color: var(--primary); }
+  .pillar:nth-child(3) { border-top-color: var(--primary-dark); }
+  .pillar .icon {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 auto 16px;
+    font-family: "Zen Maru Gothic", sans-serif;
+  }
+  .pillar:nth-child(2) .icon { background: var(--primary-light); color: var(--primary); }
+  .pillar:nth-child(3) .icon { background: var(--primary-light); color: var(--primary-dark); }
+  .pillar h3 {
+    font-family: "Zen Maru Gothic", sans-serif;
+    font-size: 19px;
+    color: var(--primary-dark);
+    margin-bottom: 12px;
+  }
+  .pillar p {
+    font-size: 14px;
+    line-height: 1.95;
+    color: var(--text-sub);
+  }
+  @media (max-width: 760px) { .pillar-grid { grid-template-columns: 1fr; } }
+
+  /* ---- 歩み（タイムライン） ---- */
+  .timeline-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+    padding-left: 48px;
+  }
+  .timeline-wrap::before {
+    content: '';
+    position: absolute;
+    left: 14px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: var(--primary-light);
+  }
+  .tl-item { position: relative; margin-bottom: 32px; }
+  .tl-item:last-child { margin-bottom: 0; }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -42px; top: 8px;
+    width: 14px; height: 14px;
+    background: var(--accent);
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+  .tl-year {
+    font-family: "Zen Maru Gothic", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .tl-title {
+    font-family: "Zen Maru Gothic", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 6px;
+  }
+  .tl-desc { font-size: 14px; color: var(--text-sub); line-height: 1.95; }
+
+  /* ---- 医師のエッセイ ---- */
+  .essay { background: linear-gradient(135deg, #FAF7F2 0%, #F7F9FC 100%); }
+  .essay-box {
+    max-width: 820px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    padding: 56px 56px 48px;
+    box-shadow: 0 8px 32px rgba(30, 58, 112, 0.08);
+    position: relative;
+  }
+  .essay-box::before {
+    content: '"';
+    position: absolute;
+    top: 12px; left: 28px;
+    font-family: "Zen Maru Gothic", serif;
+    font-size: 120px;
+    color: var(--accent-light);
+    line-height: 1;
+    font-weight: 700;
+  }
+  .essay-tag {
+    display: inline-block;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    margin-bottom: 8px;
+  }
+  .essay-box h3 {
+    font-family: "Zen Maru Gothic", sans-serif;
+    font-size: 26px;
+    color: var(--primary-dark);
+    margin-bottom: 28px;
+    font-weight: 700;
+    line-height: 1.6;
+    position: relative;
+  }
+  .essay-body p {
+    font-size: 15px;
+    line-height: 2.1;
+    margin-bottom: 18px;
+    color: var(--text);
+  }
+  .essay-body p:last-child { margin-bottom: 0; }
+  .essay-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .essay-author-photo {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-sub);
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+  .essay-author-name {
+    font-family: "Zen Maru Gothic", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary-dark);
+  }
+  .essay-author-name small { font-size: 12px; color: var(--text-sub); margin-left: 8px; font-weight: 400; }
+  .essay-date { font-size: 12px; color: var(--text-sub); }
+
+  @media (max-width: 760px) {
+    .essay-box { padding: 40px 28px 32px; }
+    .essay-box::before { font-size: 80px; left: 16px; top: 8px; }
+    .essay-box h3 { font-size: 20px; }
+  }
+
+  /* ---- 院内ギャラリー ---- */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .gallery-item {
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, var(--primary-light) 0%, #fff 100%);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-sub);
+    font-size: 13px;
+    overflow: hidden;
+  }
+  .gallery-item span {
+    padding: 8px 16px;
+    background: rgba(255,255,255,0.85);
+    border: 1px dashed var(--primary);
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  @media (max-width: 760px) { .gallery { grid-template-columns: 1fr 1fr; } }
+
+  /* ---- 設備 ---- */
+  .equipment-section { background: var(--bg-soft); }
+  .equip-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .equip {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px 20px;
+    text-align: center;
+  }
+  .equip .ic {
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    font-size: 22px;
+    font-weight: 700;
+    font-family: "Zen Maru Gothic", sans-serif;
+  }
+  .equip h4 {
+    font-family: "Zen Maru Gothic", sans-serif;
+    font-size: 15px;
+    color: var(--primary-dark);
+    margin-bottom: 6px;
+  }
+  .equip p { font-size: 12px; color: var(--text-sub); line-height: 1.8; }
+  @media (max-width: 760px) { .equip-grid { grid-template-columns: 1fr 1fr; } }
+
+  /* ---- 初めての方へ ---- */
+  .first-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+  }
+  .first-steps { display: flex; flex-direction: column; gap: 16px; }
+  .step {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 22px;
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    font-family: "Zen Maru Gothic", sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .step-text h4 {
+    font-family: "Zen Maru Gothic", sans-serif;
+    font-size: 16px;
+    color: var(--primary-dark);
+    margin-bottom: 4px;
+  }
+  .step-text p { font-size: 13px; color: var(--text-sub); line-height: 1.85; margin: 0; }
+  .belongings {
+    background: var(--primary-light);
+    border-radius: 12px;
+    padding: 28px;
+  }
+  .belongings h4 {
+    font-family: "Zen Maru Gothic", sans-serif;
+    font-size: 17px;
+    color: var(--primary-dark);
+    margin-bottom: 14px;
+  }
+  .belongings ul { list-style: none; }
+  .belongings li {
+    font-size: 14px;
+    padding: 8px 0 8px 28px;
+    position: relative;
+    color: var(--text);
+    border-bottom: 1px dashed rgba(30,58,112,0.18);
+  }
+  .belongings li:last-child { border-bottom: none; }
+  .belongings li::before {
+    content: '✓';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 20px; height: 20px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  @media (max-width: 760px) { .first-grid { grid-template-columns: 1fr; } }
+
+  /* ---- 診療時間 (mini) + アクセス ---- */
+  .info-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 16px;
+  }
+  .info-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+  }
+  .info-card h3 {
+    font-family: "Zen Maru Gothic", sans-serif;
+    font-size: 18px;
+    color: var(--primary-dark);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .hours-mini { font-size: 14px; line-height: 2; }
+  .hours-mini .lbl { display: inline-block; width: 80px; color: var(--primary); font-weight: 700; font-size: 12px; }
+  .info-card dl { display: grid; grid-template-columns: 90px 1fr; gap: 8px 16px; }
+  .info-card dt { font-size: 12px; color: var(--primary); font-weight: 700; padding-top: 4px; }
+  .info-card dd { font-size: 14px; color: var(--text); }
+  .access-link { display: inline-block; margin-top: 16px; font-size: 13px; color: var(--primary); font-weight: 700; }
+  @media (max-width: 760px) { .info-row { grid-template-columns: 1fr; } }
+
+  /* ---- フッター ---- */
+  footer { background: var(--primary-dark); color: #fff; padding: 60px 0 20px; }
+  .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 40px; margin-bottom: 32px; }
+  .footer-logo { margin-bottom: 20px; }
+  .footer-logo .logo-text { color: #fff; }
+  .footer-logo .logo-text small { color: rgba(255,255,255,0.6); }
+  .footer-info p { font-size: 14px; opacity: 0.85; margin-bottom: 6px; }
+  .footer-col h4 { font-family: "Zen Maru Gothic", sans-serif; font-size: 15px; margin-bottom: 16px; color: #fff; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.2); }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 8px; }
+  .footer-col a { font-size: 13px; opacity: 0.85; }
+  .footer-col a:hover { opacity: 1; color: var(--accent-light); }
+  .group-site-card { margin-bottom: 32px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); border-left: 4px solid var(--accent); border-radius: 8px; padding: 18px 22px; display: flex; align-items: center; gap: 18px; color: #fff; transition: all 0.2s; }
+  .group-site-card:hover { background: rgba(255,255,255,0.14); border-color: var(--accent-light); }
+  .group-site-card img { height: 56px; width: auto; flex-shrink: 0; background: #fff; padding: 6px; border-radius: 6px; }
+  .group-site-card .gs-name { font-family: "Zen Maru Gothic", sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+  .group-site-card .gs-desc { font-size: 12px; opacity: 0.85; }
+  .group-site-card .gs-arrow { font-size: 22px; flex-shrink: 0; transition: transform 0.2s; }
+  .group-site-card:hover .gs-arrow { transform: translateX(4px); }
+  .copyright { text-align: center; font-size: 12px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.15); opacity: 0.6; }
+  @media (max-width: 760px) {
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .group-site-card { flex-direction: column; text-align: center; }
+  }
+
+  /* フローティングWeb予約ボタン */
+  .floating-reserve { position: fixed; right: 16px; bottom: 24px; background: var(--accent); color: #fff; padding: 14px 22px; border-radius: 50px; font-size: 14px; font-weight: 700; box-shadow: 0 6px 20px rgba(178,58,58,0.45); z-index: 200; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.2s, box-shadow 0.2s; }
+  .floating-reserve:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(178,58,58,0.55); background: var(--accent-dark); }
+  .floating-reserve .pulse { width: 10px; height: 10px; background: #FFD6D6; border-radius: 50%; animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.3); } }
+
+  /* モックアップ注釈 */
+  .mockup-note { position: fixed; bottom: 90px; right: 16px; background: rgba(30, 58, 112, 0.95); color: #fff; padding: 10px 16px; border-radius: 8px; font-size: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.2); z-index: 1000; max-width: 280px; line-height: 1.6; }
+  .mockup-note strong { color: #FFD6D6; }
+</style>
+</head>
+<body>
+
+<!-- 上部の診療時間バー -->
+<div class="topbar">
+  <div class="container">
+    <div class="info">
+      <span>受付 8:30～12:00 / 14:45～18:00　診療 9:00～12:00 / 15:00～18:00</span>
+      <span>休診日：日曜・祝日</span>
+    </div>
+    <div>🏥 医療法人 博滇会グループ</div>
+  </div>
+</div>
+
+<!-- ヘッダー -->
+<header class="header">
+  <div class="container">
+    <a href="index.html" class="logo">
+      <img class="logo-mark" src="hakushinkai_logo.png" alt="医療法人 博滇会">
+      <div class="logo-divider"></div>
+      <div class="logo-text">湯澤医院<small>YUZAWA CLINIC</small></div>
+    </a>
+    <nav class="nav">
+      <a href="about.html" class="active">当院について</a>
+      <a href="index.html#departments">診療科</a>
+      <a href="index.html#services">サービス</a>
+      <a href="index.html#doctor">医師紹介</a>
+      <a href="index.html#news">お知らせ</a>
+    </nav>
+    <div class="header-cta">
+      <a href="https://arwrk.net/recruit/hakushinkai/" target="_blank" rel="noopener" class="btn-recruit">求人情報</a>
+      <a href="tel:0486243974" class="btn-tel">☎ <span class="num">048-624-3974</span></a>
+      <a href="https://ssc.doctorqube.com/hakushinkai-yuzawa/" target="_blank" rel="noopener" class="btn btn-accent">Web予約</a>
+    </div>
+  </div>
+</header>
+
+<!-- ページヒーロー -->
+<section class="page-hero">
+  <div class="container">
+    <span class="en">ABOUT</span>
+    <h1>医院について</h1>
+    <div class="breadcrumb">
+      <a href="index.html">トップ</a><span>&gt;</span>医院について
+    </div>
+  </div>
+</section>
+
+<!-- 理念 -->
+<section class="philosophy reveal">
+  <div class="container">
+    <div class="sec-head">
+      <span class="en">PHILOSOPHY</span>
+      <h2>大切にしていること</h2>
+    </div>
+    <p class="philosophy-lead">
+      昭和5年の開院以来、地域の皆さまの健康と暮らしを支え続けてまいりました。<br>
+      赤ちゃんからご高齢の方まで、こころと体の両面を支えるチーム医療を実践し、<br>
+      「何でも相談できる診療所」であり続けることを大切にしています。
+    </p>
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="icon">🤝</div>
+        <h3>地域との深い絆</h3>
+        <p>86年の歴史のなかで、3世代にわたって通われるご家族も少なくありません。地域に根ざしたかかりつけ医として、安心してご相談いただける関係を続けます。</p>
+      </div>
+      <div class="pillar">
+        <div class="icon">🌱</div>
+        <h3>こころと体の両面を</h3>
+        <p>身体の不調はもちろん、こころのご相談にも幅広く対応します。精神科・心療内科・認知症相談の専門医が在籍し、丁寧にお話をうかがいます。</p>
+      </div>
+      <div class="pillar">
+        <div class="icon">🩺</div>
+        <h3>包括的なチーム医療</h3>
+        <p>医療だけでなく、保健・福祉のスタッフとも連携。急性期から慢性期、在宅医療まで、ご本人とご家族の生活全体を支える診療体制です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 歩み -->
+<section class="reveal">
+  <div class="container">
+    <div class="sec-head">
+      <span class="en">HISTORY</span>
+      <h2>湯澤医院のあゆみ</h2>
+    </div>
+    <div class="timeline-wrap">
+      <div class="tl-item">
+        <div class="tl-year">1930年（昭和5年）</div>
+        <div class="tl-title">湯澤医院 開院</div>
+        <div class="tl-desc">さいたま市西区西遊馬の地にて、地域のかかりつけ医として診療を開始しました。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">19○○年</div>
+        <div class="tl-title">医療法人 博滇会 設立</div>
+        <div class="tl-desc">グループ医療として、より広い地域・幅広い世代を支える体制へ。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">20○○年</div>
+        <div class="tl-title">精神科・心療内科を開設</div>
+        <div class="tl-desc">こころの不調へのご相談にも幅広く対応できる体制を整えました。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">20○○年</div>
+        <div class="tl-title">認知症相談外来を開設</div>
+        <div class="tl-desc">ご本人とご家族を支える専門外来として、認知症サポート医が対応しています。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2016年</div>
+        <div class="tl-title">創業86年</div>
+        <div class="tl-desc">これからも、地域に寄り添いつづけます。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 医師のエッセイ -->
+<section class="essay reveal">
+  <div class="container">
+    <div class="sec-head">
+      <span class="en">DOCTOR'S ESSAY</span>
+      <h2>院長のエッセイ</h2>
+    </div>
+    <div class="essay-box">
+      <div class="essay-tag">2026年4月</div>
+      <h3>新しい季節に、こころと体の声に耳をすませて</h3>
+      <div class="essay-body">
+        <p>春は出会いと別れ、生活の変化が重なる季節です。新しい環境にワクワクする気持ちと、慣れないことへの緊張が同居して、ふとしたときに体の不調や不眠、気分の落ち込みとして現れることがあります。</p>
+        <p>診療をしていると、「これくらいで受診していいのだろうか」と長くがまんされていた方にお会いすることが少なくありません。大切なのは、「いつもとちょっと違うな」と感じたときに、気軽に相談できる場所があることだと考えています。当院は、そうした「ちょっとした違和感」のうちにご相談いただける、かかりつけの診療所でありたいと思っています。</p>
+        <p>お子さまの心の不調も、ご家族の認知症のご相談も、まずは話を聞かせてください。私たちは、医療と介護・福祉の関係機関と連携しながら、ご本人とご家族にとっていちばん良い形を一緒に考えていきます。</p>
+        <p>新緑の季節、心地よい風を感じながら、ご自身とご家族の体調にも目を向けてみてください。気になることがあれば、いつでもどうぞ。</p>
+      </div>
+      <div class="essay-author">
+        <div class="essay-author-photo">顔写真</div>
+        <div>
+          <div class="essay-author-name">院長　湯澤 ○○<small>YUZAWA ○○</small></div>
+          <div class="essay-date">2026年4月15日</div>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:24px; font-size:13px; color:var(--text-sub);">※ エッセイは院長より、月1回程度のペースで更新予定です。</p>
+  </div>
+</section>
+
+<!-- 院内ギャラリー -->
+<section class="reveal">
+  <div class="container">
+    <div class="sec-head">
+      <span class="en">CLINIC PHOTOS</span>
+      <h2>院内のご紹介</h2>
+    </div>
+    <div class="gallery">
+      <div class="gallery-item"><span>外観</span></div>
+      <div class="gallery-item"><span>受付</span></div>
+      <div class="gallery-item"><span>待合室</span></div>
+      <div class="gallery-item"><span>診察室</span></div>
+      <div class="gallery-item"><span>処置室</span></div>
+      <div class="gallery-item"><span>キッズスペース</span></div>
+    </div>
+    <p style="text-align:center; margin-top:20px; font-size:12px; color:var(--text-sub);">※ 院内写真はあとで実写真と差し替えます</p>
+  </div>
+</section>
+
+<!-- 設備 -->
+<section class="equipment-section reveal">
+  <div class="container">
+    <div class="sec-head">
+      <span class="en">EQUIPMENT</span>
+      <h2>主な設備</h2>
+    </div>
+    <div class="equip-grid">
+      <div class="equip">
+        <div class="ic">X</div>
+        <h4>レントゲン</h4>
+        <p>胸部・骨折などの診断に</p>
+      </div>
+      <div class="equip">
+        <div class="ic">音</div>
+        <h4>超音波診断装置</h4>
+        <p>腹部・甲状腺などの検査に</p>
+      </div>
+      <div class="equip">
+        <div class="ic">心</div>
+        <h4>心電図</h4>
+        <p>不整脈・虚血性心疾患の検査</p>
+      </div>
+      <div class="equip">
+        <div class="ic">血</div>
+        <h4>各種血液検査</h4>
+        <p>院内で迅速対応</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 初めての方へ -->
+<section class="reveal">
+  <div class="container">
+    <div class="sec-head">
+      <span class="en">FIRST VISIT</span>
+      <h2>初めて来院される方へ</h2>
+    </div>
+    <div class="first-grid">
+      <div class="first-steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <h4>受付</h4>
+            <p>受付に保険証と各種医療証をご提示ください。問診票にご記入いただきます。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <h4>問診・診察</h4>
+            <p>看護師がお話をうかがった後、医師の診察を行います。お気軽にご相談ください。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <h4>検査・処置</h4>
+            <p>必要に応じて検査や処置を行います。当院でできる検査は院内で対応します。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <h4>会計・お薬</h4>
+            <p>会計後、処方箋をお渡しします。院外の薬局で薬を受け取ってください。</p>
+          </div>
+        </div>
+      </div>
+      <div class="belongings">
+        <h4>ご持参ください</h4>
+        <ul>
+          <li>健康保険証</li>
+          <li>各種医療証（受給者証など）</li>
+          <li>お薬手帳（お持ちの方）</li>
+          <li>紹介状（お持ちの方）</li>
+          <li>母子健康手帳（お子さまのご来院時）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 診療時間・アクセス（簡易版） -->
+<section class="philosophy reveal">
+  <div class="container">
+    <div class="sec-head">
+      <span class="en">HOURS &amp; ACCESS</span>
+      <h2>診療時間・アクセス</h2>
+    </div>
+    <div class="info-row">
+      <div class="info-card">
+        <h3>受付・診療時間</h3>
+        <div class="hours-mini">
+          <div><span class="lbl">受付</span>8:30 - 12:00 / 14:45 - 18:00</div>
+          <div><span class="lbl">診療</span>9:00 - 12:00 / 15:00 - 18:00</div>
+          <div><span class="lbl">休診日</span>日曜・祝日・土曜午後</div>
+          <div style="font-size:12px; color:var(--text-sub); margin-top:8px;">※ 小児科は金曜休診</div>
+        </div>
+        <a href="index.html#access" class="access-link">＞ 詳しい診療時間表を見る</a>
+      </div>
+      <div class="info-card">
+        <h3>アクセス</h3>
+        <dl>
+          <dt>所在地</dt>
+          <dd>〒331-0061<br>さいたま市西区西遊馬1260-1</dd>
+          <dt>電話番号</dt>
+          <dd>048-624-3974</dd>
+          <dt>最寄駅</dt>
+          <dd>JR川越線 指扇駅から徒歩5分</dd>
+          <dt>駐車場</dt>
+          <dd>あり（60台）</dd>
+        </dl>
+        <a href="index.html#access" class="access-link">＞ 地図を見る</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          <div class="logo-text">湯澤医院<small>YUZAWA CLINIC</small></div>
+        </div>
+        <div class="footer-info">
+          <p>〒331-0061 さいたま市西区西遊馬1260-1</p>
+          <p>TEL: 048-624-3974</p>
+          <p>精神科・心療内科・内科・小児科・皮膚科・発熱外来</p>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>サイトメニュー</h4>
+        <ul>
+          <li><a href="index.html">トップ</a></li>
+          <li><a href="about.html">当院について</a></li>
+          <li><a href="index.html#departments">診療科のご案内</a></li>
+          <li><a href="index.html#doctor">医師紹介</a></li>
+          <li><a href="index.html#news">お知らせ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>関連リンク</h4>
+        <ul>
+          <li><a href="https://ssc.doctorqube.com/hakushinkai-yuzawa/" target="_blank" rel="noopener">Web予約</a></li>
+          <li><a href="https://arwrk.net/recruit/hakushinkai/" target="_blank" rel="noopener">求人情報</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <a class="group-site-card" href="https://hakushinkai.jp/" target="_blank" rel="noopener">
+      <img src="hakushinkai_logo.png" alt="医療法人 博滇会">
+      <div class="gs-text">
+        <div class="gs-name">医療法人 博滇会グループ</div>
+        <div class="gs-desc">湯澤医院は博滇会グループの一員です。グループサイトはこちら</div>
+      </div>
+      <div class="gs-arrow">→</div>
+    </a>
+
+    <div class="copyright">© 湯澤医院 / 医療法人 博滇会</div>
+  </div>
+</footer>
+
+<a class="floating-reserve" href="https://ssc.doctorqube.com/hakushinkai-yuzawa/" target="_blank" rel="noopener">
+  <span class="pulse"></span>
+  Web予約
+</a>
+
+<div class="mockup-note">
+  <strong>※ モックアップ</strong><br>
+  写真・年表の年・エッセイ本文・医師名は仮置きです。実データに差し替え予定。
+</div>
+
+<script>
+  (function() {
+    var targets = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      targets.forEach(function(el) { el.classList.add('visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    targets.forEach(function(el) { io.observe(el); });
+  })();
+</script>
+
+</body>
+</html>
