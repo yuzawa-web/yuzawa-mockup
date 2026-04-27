@@ -154,15 +154,14 @@
     color: #fff;
     overflow: hidden;
     background-color: var(--primary-dark);
-    /* 将来: 医院外観の実写真をbackground-imageに差し替え */
     background-image:
-      linear-gradient(135deg, rgba(30,58,112,0.82) 0%, rgba(30,58,112,0.55) 50%, rgba(178,58,58,0.40) 100%),
-      radial-gradient(circle at 30% 40%, #3d6aa8 0%, #1E3A70 55%, #0F2448 100%);
+      linear-gradient(135deg, rgba(30,58,112,0.78) 0%, rgba(30,58,112,0.55) 50%, rgba(178,58,58,0.42) 100%),
+      url('https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1600&q=80&auto=format&fit=crop');
     background-size: cover;
     background-position: center;
   }
   .hero::after {
-    content: '※ 背景には医院外観または診察風景の写真を配置';
+    content: '※ 背景は仮ストック写真（Unsplash）。本番では医院外観／診察風景の写真に差し替え';
     position: absolute;
     bottom: 12px; right: 16px;
     font-size: 11px;
@@ -243,6 +242,23 @@
   }
   .schedule-grid .value { font-size: 16px; font-weight: 500; }
   .schedule-grid .value small { font-size: 12px; color: var(--text-sub); }
+  .schedule-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary);
+    background: var(--primary-light);
+    border-radius: 16px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .schedule-link:hover {
+    background: var(--primary);
+    color: #fff;
+    transform: translateX(2px);
+  }
 
   @media (max-width: 680px) {
     .schedule-grid { grid-template-columns: 1fr; }
@@ -621,6 +637,84 @@
     position: relative;
     overflow: hidden;
   }
+  .reserve-hot-label {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    padding: 5px 14px;
+    border-radius: 2px;
+    margin-bottom: 14px;
+  }
+  .reserve-benefits {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    margin: 0 auto 32px;
+    max-width: 720px;
+    flex-wrap: wrap;
+  }
+  .reserve-benefits div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.95);
+  }
+  .reserve-benefits div::before {
+    content: '✓';
+    width: 22px; height: 22px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* 画面端に固定するWeb予約ボタン */
+  .floating-reserve {
+    position: fixed;
+    right: 16px;
+    bottom: 24px;
+    background: var(--accent);
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 700;
+    box-shadow: 0 6px 20px rgba(178,58,58,0.45);
+    z-index: 200;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .floating-reserve:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(178,58,58,0.55);
+    background: var(--accent-dark);
+  }
+  .floating-reserve .pulse {
+    width: 10px; height: 10px;
+    background: #FFD6D6;
+    border-radius: 50%;
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.3); }
+  }
+  @media (max-width: 680px) {
+    .floating-reserve { padding: 12px 18px; font-size: 13px; }
+  }
   .reserve::before {
     content: '';
     position: absolute;
@@ -727,13 +821,8 @@
     border: 1px solid var(--border);
     position: relative;
   }
-  .doctor-photo::before {
-    content: '医師の顔写真';
-    padding: 8px 16px;
-    background: rgba(255,255,255,0.9);
-    border: 1px dashed var(--primary);
-    border-radius: 4px;
-  }
+  .doctor-photo::before { content: none !important; }
+  .doctor-photo img { display: block; }
   .doctor-info .cat {
     font-size: 13px;
     color: var(--accent);
@@ -798,13 +887,8 @@
     min-height: 320px;
     border: 1px solid var(--border);
   }
-  .access-map::before {
-    content: '📍 Googleマップを埋め込み';
-    padding: 10px 20px;
-    background: #fff;
-    border-radius: 4px;
-    border: 1px dashed var(--primary);
-  }
+  .access-map::before { content: none !important; }
+  .access-map iframe { display: block; width: 100%; height: 100%; min-height: 320px; border-radius: 12px; }
 
   @media (max-width: 760px) {
     .access-grid { grid-template-columns: 1fr; }
@@ -863,6 +947,61 @@
   .footer-col li { margin-bottom: 8px; }
   .footer-col a { font-size: 13px; opacity: 0.85; }
   .footer-col a:hover { opacity: 1; color: var(--accent-light); }
+
+  /* グループサイトへの導線（目立たせる） */
+  .group-site-card {
+    margin-bottom: 32px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .group-site-card:hover {
+    background: rgba(255,255,255,0.14);
+    border-color: var(--accent-light);
+  }
+  .group-site-card img {
+    height: 56px;
+    width: auto;
+    flex-shrink: 0;
+    background: #fff;
+    padding: 6px;
+    border-radius: 6px;
+  }
+  .group-site-card .gs-text { flex: 1; min-width: 0; }
+  .group-site-card .gs-label {
+    font-size: 11px;
+    color: var(--accent-light);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    margin-bottom: 4px;
+  }
+  .group-site-card .gs-name {
+    font-family: "Noto Serif JP", serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .group-site-card .gs-desc {
+    font-size: 12px;
+    opacity: 0.85;
+  }
+  .group-site-card .gs-arrow {
+    font-size: 22px;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+  .group-site-card:hover .gs-arrow { transform: translateX(4px); }
+  @media (max-width: 680px) {
+    .group-site-card { flex-direction: column; text-align: center; }
+  }
   .copyright {
     text-align: center;
     font-size: 12px;
@@ -899,7 +1038,7 @@
 <div class="topbar">
   <div class="container">
     <div class="info">
-      <span>診療時間：8:30～12:00 / 14:45～18:00</span>
+      <span>受付 8:30～12:00 / 14:45～18:00　診療 9:00～12:00 / 15:00～18:00</span>
       <span>休診日：日曜・祝日</span>
     </div>
     <div>🏥 医療法人 博滇会グループ</div>
@@ -927,7 +1066,7 @@
     <div class="header-cta">
       <a href="#" class="btn-recruit">求人情報</a>
       <a href="tel:0486243974" class="btn-tel">☎ <span class="num">048-624-3974</span></a>
-      <a href="#" class="btn btn-accent">Web予約</a>
+      <a href="https://ssc.doctorqube.com/hakushinkai-yuzawa/" target="_blank" rel="noopener" class="btn btn-accent">Web予約</a>
     </div>
   </div>
 </header>
@@ -942,7 +1081,7 @@
       赤ちゃんからご高齢の方まで、こころと体の両面から、保健・医療・福祉を包括したチーム医療をご提供します。
     </p>
     <div class="hero-cta">
-      <a href="#" class="btn btn-accent btn-large">Web予約はこちら</a>
+      <a href="https://ssc.doctorqube.com/hakushinkai-yuzawa/" target="_blank" rel="noopener" class="btn btn-accent btn-large">Web予約はこちら</a>
       <a href="#departments" class="btn btn-outline btn-large">診療のご案内</a>
     </div>
   </div>
@@ -953,16 +1092,20 @@
   <div class="schedule-bar">
     <div class="schedule-grid">
       <div>
-        <div class="label">DIAGNOSIS HOURS</div>
-        <div class="value">8:30～12:00<br><small>/ 14:45～18:00</small></div>
+        <div class="label">受付・診療時間</div>
+        <div class="value" style="font-size:14px; line-height:1.7;">
+          <span style="color:var(--text-sub); font-size:12px;">受付</span> 8:30～12:00 / 14:45～18:00<br>
+          <span style="color:var(--text-sub); font-size:12px;">診療</span> 9:00～12:00 / 15:00～18:00
+        </div>
       </div>
       <div>
-        <div class="label">CLOSED</div>
+        <div class="label">休診日</div>
         <div class="value">日曜・祝日<br><small>※金曜の小児科は休診</small></div>
       </div>
       <div>
-        <div class="label">ACCESS</div>
-        <div class="value">さいたま市西区<br><small>西遊馬1260-1</small></div>
+        <div class="label">アクセス</div>
+        <div class="value" style="font-size:15px; line-height:1.5;">さいたま市西区西遊馬1260-1</div>
+        <a href="#access" class="schedule-link">アクセス詳細へ →</a>
       </div>
     </div>
   </div>
@@ -1132,12 +1275,18 @@
 <!-- Web予約 -->
 <section class="reserve">
   <div class="container">
+    <span class="reserve-hot-label">▶ いちばん便利</span>
     <span class="en">ONLINE RESERVATION</span>
-    <h2>待ち時間を短く、スムーズな受診を</h2>
-    <p>Web予約システムなら24時間いつでもご予約いただけます。<br>お電話でのご予約もお気軽にどうぞ。</p>
+    <h2>Web予約がいちばんスムーズです</h2>
+    <p>受付・お電話の混雑を避けて、24時間いつでもご予約いただけます。<br>初めての方もご家族の予約もWebからどうぞ。</p>
+    <div class="reserve-benefits">
+      <div>24時間いつでも受付</div>
+      <div>待ち時間を短縮</div>
+      <div>ご家族の予約もまとめて</div>
+    </div>
     <div class="reserve-cta">
-      <a href="#" class="btn btn-accent btn-large">Web予約はこちら</a>
-      <a href="tel:0486243974" class="reserve-tel">☎ 048-624-3974</a>
+      <a href="https://ssc.doctorqube.com/hakushinkai-yuzawa/" target="_blank" rel="noopener" class="btn btn-accent btn-large">Web予約はこちら</a>
+      <a href="tel:0486243974" class="reserve-tel">電話の方は ☎ 048-624-3974</a>
     </div>
   </div>
 </section>
@@ -1150,7 +1299,9 @@
       <h2>医師のご紹介</h2>
     </div>
     <div class="doctor">
-      <div class="doctor-photo"></div>
+      <div class="doctor-photo">
+        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=80&auto=format&fit=crop" alt="医師の顔写真（仮）" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
+      </div>
       <div class="doctor-info">
         <div class="cat">MESSAGE</div>
         <h3>患者さまへのメッセージ</h3>
@@ -1169,29 +1320,29 @@
   <div class="container">
     <div class="sec-head">
       <span class="en">HOURS</span>
-      <h2>診療時間</h2>
+      <h2>受付・診療時間</h2>
     </div>
     <div class="hours-table">
       <table>
         <thead>
           <tr>
-            <th>時間</th>
+            <th>　</th>
             <th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日・祝</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>8:30 - 12:00</td>
+            <td>午前　受付　8:30 - 12:00<br>　　　診療　9:00 - 12:00</td>
             <td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>—</td>
           </tr>
           <tr>
-            <td>14:45 - 18:00</td>
+            <td>午後　受付　14:45 - 18:00<br>　　　診療　15:00 - 18:00</td>
             <td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>—</td><td>—</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p class="hours-note">※ 小児科は金曜休診　※ 受付は診療終了15分前までとなります</p>
+    <p class="hours-note">※ 小児科は金曜休診　※ 休診日：日曜・祝日・土曜午後</p>
   </div>
 </section>
 
@@ -1213,61 +1364,8 @@
           <dt>診療科目</dt>
           <dd>精神科・心療内科・内科・小児科・皮膚科・発熱外来</dd>
           <dt>駐車場</dt>
-          <dd>あり（○台）</dd>
+          <dd>あり（60台）</dd>
           <dt>アクセス</dt>
-          <dd>○○駅から徒歩○分</dd>
+          <dd>JR川越線 指扇駅から徒歩5分</dd>
         </dl>
-      </div>
-      <div class="access-map"></div>
-    </div>
-  </div>
-</section>
-
-<!-- フッター -->
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-logo">
-          <div class="logo-text">
-            湯澤医院
-            <small>YUZAWA CLINIC</small>
-          </div>
-        </div>
-        <div class="footer-info">
-          <p>〒331-0061 さいたま市西区西遊馬1260-1</p>
-          <p>TEL: 048-624-3974</p>
-          <p>精神科・心療内科・内科・小児科・皮膚科・発熱外来</p>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>サイトメニュー</h4>
-        <ul>
-          <li><a href="#">トップ</a></li>
-          <li><a href="#departments">診療科のご案内</a></li>
-          <li><a href="#doctor">医師紹介</a></li>
-          <li><a href="#access">医院紹介</a></li>
-          <li><a href="#news">お知らせ</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>関連リンク</h4>
-        <ul>
-          <li><a href="#">Web予約</a></li>
-          <li><a href="#">求人情報</a></li>
-          <li><a href="#">医療法人 博滇会グループ</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="copyright">© 湯澤医院 / 医療法人 博滇会</div>
-  </div>
-</footer>
-
-<!-- モックアップ用の注釈 -->
-<div class="mockup-note">
-  <strong>※ モックアップ</strong><br>
-  博滇会ロゴを反映しました。写真・医師名・地図は仮置きです。
-</div>
-
-</body>
-</html>
+    
