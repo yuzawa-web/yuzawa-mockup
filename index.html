@@ -35,13 +35,13 @@
   .serif { font-family: "Zen Maru Gothic", sans-serif; }
   .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
 
-  /* スクロールでフワッと現れる動き */
-  .reveal {
+  /* スクロールでフワッと現れる動き（JSが動くときだけ最初は隠す） */
+  .js .reveal {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .js .reveal.visible { opacity: 1; transform: translateY(0); }
   .reveal-delay-1 { transition-delay: 0.1s; }
   .reveal-delay-2 { transition-delay: 0.2s; }
   .reveal-delay-3 { transition-delay: 0.3s; }
@@ -1492,15 +1492,28 @@
 </div>
 
 <script>
-  // スクロールに合わせてセクションをフワッと表示
+  // JSが動くときだけアニメ用のクラスを付ける（未対応環境では普通に表示）
+  document.documentElement.classList.add('js');
   (function() {
     var targets = document.querySelectorAll('.reveal');
     if (!('IntersectionObserver' in window)) {
-      // 古いブラウザ：すべて表示
       targets.forEach(function(el) { el.classList.add('visible'); });
       return;
     }
     var io = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visi
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
+    targets.forEach(function(el) { io.observe(el); });
+    // 念のため：3秒後にまだ見えていないものは強制的に表示
+    setTimeout(function() {
+      targets.forEach(function(el) { if (!el.classList.contains('visible')) el.classList.add('visible'); });
+    }, 3000);
+  })();
+</script>
+</body>
+</html>
