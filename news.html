@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お知らせ一覧｜湯澤医院｜さいたま市西区のかかりつけ診療所</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #2A5298;
+    --primary-dark: #1E3A70;
+    --primary-light: #EAF0F7;
+    --accent: #B23A3A;
+    --accent-dark: #8B2626;
+    --accent-light: #F7EBEB;
+    --text: #222222;
+    --text-sub: #555555;
+    --bg: #FFFFFF;
+    --bg-soft: #F7F9FC;
+    --border: #E0E6EE;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: "Zen Kaku Gothic New", "Yu Gothic", sans-serif; color: var(--text); line-height: 1.8; background: var(--bg); }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  .js .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .js .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  .topbar { background: var(--primary-dark); color: #fff; font-size: 13px; }
+  .topbar .container { display: flex; justify-content: space-between; align-items: center; padding: 8px 24px; }
+  .topbar .info { display: flex; gap: 24px; }
+  .topbar .info span { opacity: 0.9; }
+  @media (max-width: 760px) { .topbar .info { display: none; } }
+
+  .header { background: #fff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+  .header .container { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; }
+  .logo { display: flex; align-items: center; gap: 14px; }
+  .logo-mark { height: 52px; width: auto; flex-shrink: 0; object-fit: contain; }
+  .logo-divider { width: 1px; height: 36px; background: var(--border); flex-shrink: 0; }
+  .logo-text { font-family: "Zen Maru Gothic", sans-serif; font-weight: 700; color: var(--primary-dark); font-size: 20px; letter-spacing: 0.05em; }
+  .logo-text small { display: block; font-size: 11px; color: var(--text-sub); font-weight: 400; letter-spacing: 0.15em; }
+  .nav { display: flex; gap: 28px; font-size: 14px; font-weight: 500; }
+  .nav a { position: relative; padding: 4px 0; color: var(--text); }
+  .nav a:hover, .nav a.active { color: var(--primary); }
+  .nav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px; background: var(--primary); transform: scaleX(0); transition: transform 0.2s; }
+  .nav a:hover::after, .nav a.active::after { transform: scaleX(1); }
+  .header-cta { display: flex; gap: 10px; align-items: center; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 4px; font-size: 14px; font-weight: 700; transition: all 0.2s; border: none; cursor: pointer; font-family: inherit; white-space: nowrap; }
+  .btn-accent { background: var(--accent); color: #fff; }
+  .btn-accent:hover { background: var(--accent-dark); }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-outline { background: #fff; color: var(--primary); border: 2px solid var(--primary); }
+  .btn-outline:hover { background: var(--primary-light); }
+  .btn-tel { background: var(--accent); color: #fff; padding: 10px 18px; border-radius: 40px; display: inline-flex; align-items: center; gap: 6px; }
+  .btn-tel .num { font-size: 16px; font-weight: 700; }
+  .btn-recruit { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #fff; background: var(--primary-dark); padding: 10px 16px; border-radius: 4px; transition: all 0.2s; }
+  .btn-recruit::before { content: '👥'; font-size: 14px; }
+  .btn-recruit:hover { background: var(--primary); }
+  @media (max-width: 900px) {
+    .nav { display: none; }
+    .header-cta .btn-recruit { display: none; }
+    .header-cta .btn-tel .num { display: none; }
+  }
+
+  /* ページヒーロー */
+  .page-hero {
+    position: relative; color: #fff; overflow: hidden;
+    background-color: var(--primary-dark);
+    background-image:
+      linear-gradient(135deg, rgba(30,58,112,0.78) 0%, rgba(30,58,112,0.55) 50%, rgba(178,58,58,0.40) 100%),
+      url('hero_clinic.jpg');
+    background-size: cover;
+    background-position: center 35%;
+    padding: 60px 0 50px;
+    text-align: center;
+  }
+  .page-hero h1 { font-family: "Zen Maru Gothic", sans-serif; font-size: 36px; font-weight: 700; letter-spacing: 0.06em; text-shadow: 0 2px 12px rgba(0,0,0,0.35); margin-bottom: 8px; }
+  .page-hero .en { font-size: 12px; letter-spacing: 0.4em; color: rgba(255,255,255,0.85); text-transform: uppercase; margin-bottom: 16px; display: block; }
+  .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.85); }
+  .breadcrumb a { color: rgba(255,255,255,0.95); text-decoration: underline; text-underline-offset: 3px; }
+  .breadcrumb span { margin: 0 8px; opacity: 0.6; }
+
+  /* セクション */
+  section { padding: 56px 0; }
+  .news-wrap { max-width: 920px; margin: 0 auto; }
+
+  /* フィルター */
+  .news-filter {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: center;
+  }
+  .filter-group { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .filter-label { font-size: 13px; color: var(--text-sub); font-weight: 700; }
+  .filter-chip {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 16px;
+    font-size: 13px;
+    color: var(--text);
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-chip.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+  .filter-chip:hover { background: var(--primary-light); }
+  .filter-chip.active:hover { background: var(--primary-dark); }
+  .filter-select {
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 13px;
+    background: #fff;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  @media (max-width: 760px) {
+    .news-filter { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* お知らせ一覧 */
+  .news-list { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .news-item {
+    display: grid;
+    grid-template-columns: 110px 110px 1fr;
+    gap: 20px;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .news-item:last-child { border-bottom: none; }
+  .news-item:hover { background: var(--primary-light); }
+  .news-date { font-size: 13px; color: var(--text-sub); font-family: monospace; }
+  .news-cat-wrap { display: flex; align-items: center; }
+  .news-cat {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 3px;
+    text-align: center;
+    min-width: 80px;
+  }
+  .news-cat.important { background: var(--accent); color: #fff; }
+  .news-cat.closed { background: var(--accent-dark); color: #fff; }
+  .news-cat.vaccine { background: var(--primary); color: #fff; }
+  .news-cat.epidemic { background: #C77B30; color: #fff; }
+  .news-cat.info { background: var(--primary-light); color: var(--primary-dark); }
+  .news-title-wrap { min-width: 0; }
+  .news-title { font-size: 15px; color: var(--text); font-weight: 500; line-height: 1.6; }
+  .news-summary { font-size: 13px; color: var(--text-sub); margin-top: 4px; line-height: 1.7; }
+  @media (max-width: 760px) {
+    .news-item { grid-template-columns: 1fr; gap: 8px; padding: 16px 20px; }
+    .news-cat-wrap { justify-self: start; }
+  }
+
+  /* 検索なし時のメッセージ */
+  .no-results {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--text-sub);
+    font-size: 14px;
+  }
+
+  /* ページネーション */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: 32px;
+  }
+  .pagination a, .pagination span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text);
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .pagination a:hover { background: var(--primary-light); border-color: var(--primary); }
+  .pagination .current { background: var(--primary); color: #fff; border-color: var(--primary); cursor: default; }
+  .pagination .disabled { opacity: 0.4; cursor: default; }
+  .pagination .ellipsis { border: none; background: transparent; }
+
+  /* フッター */
+  footer { background: var(--primary-dark); color: #fff; padding: 60px 0 20px; }
+  .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 40px; margin-bottom: 32px; }
+  .footer-logo { margin-bottom: 20px; }
+  .footer-logo .logo-text { color: #fff; }
+  .footer-logo .logo-text small { color: rgba(255,255,255,0.6); }
+  .footer-info p { font-size: 14px; opacity: 0.85; margin-bottom: 6px; }
+  .footer-col h4 { font-family: "Zen Maru Gothic", sans-serif; font-size: 15px; margin-bottom: 16px; color: #fff; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.2); }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 8px; }
+  .footer-col a { font-size: 13px; opacity: 0.85; }
+  .footer-col a:hover { opacity: 1; color: var(--accent-light); }
+  .group-site-card { margin-bottom: 32px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); border-left: 4px solid var(--accent); border-radius: 8px; padding: 18px 22px; display: flex; align-items: center; gap: 18px; color: #fff; transition: all 0.2s; }
+  .group-site-card:hover { background: rgba(255,255,255,0.14); border-color: var(--accent-light); }
+  .group-site-card img { height: 56px; width: auto; flex-shrink: 0; background: #fff; padding: 6px; border-radius: 6px; }
+  .group-site-card .gs-name { font-family: "Zen Maru Gothic", sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+  .group-site-card .gs-desc { font-size: 12px; opacity: 0.85; }
+  .group-site-card .gs-arrow { font-size: 22px; flex-shrink: 0; transition: transform 0.2s; }
+  .group-site-card:hover .gs-arrow { transform: translateX(4px); }
+  .copyright { text-align: center; font-size: 12px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.15); opacity: 0.6; }
+  @media (max-width: 760px) {
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .group-site-card { flex-direction: column; text-align: center; }
+  }
+
+  .floating-reserve { position: fixed; right: 16px; bottom: 24px; background: var(--accent); color: #fff; padding: 14px 22px; border-radius: 50px; font-size: 14px; font-weight: 700; box-shadow: 0 6px 20px rgba(178,58,58,0.45); z-index: 200; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.2s, box-shadow 0.2s; }
+  .floating-reserve:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(178,58,58,0.55); background: var(--accent-dark); }
+  .floating-reserve .pulse { width: 10px; height: 10px; background: #FFD6D6; border-radius: 50%; animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.3); } }
+
+  .mockup-note { position: fixed; bottom: 90px; right: 16px; background: rgba(30, 58, 112, 0.95); color: #fff; padding: 10px 16px; border-radius: 8px; font-size: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.2); z-index: 1000; max-width: 280px; line-height: 1.6; }
+  .mockup-note strong { color: #FFD6D6; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <div class="info">
+      <span>受付 8:30～12:00 / 14:45～18:00　診療 9:00～12:00 / 15:00～18:00</span>
+      <span>休診日：日曜・祝日</span>
+    </div>
+    <div>🏥 医療法人 博滇会グループ</div>
+  </div>
+</div>
+
+<header class="header">
+  <div class="container">
+    <a href="index.html" class="logo">
+      <img class="logo-mark" src="hakushinkai_logo.png" alt="医療法人 博滇会">
+      <div class="logo-divider"></div>
+      <div class="logo-text">湯澤医院<small>YUZAWA CLINIC</small></div>
+    </a>
+    <nav class="nav">
+      <a href="about.html">当院について</a>
+      <a href="index.html#departments">診療科</a>
+      <a href="index.html#services">サービス</a>
+      <a href="doctors.html">医師紹介</a>
+      <a href="news.html" class="active">お知らせ</a>
+    </nav>
+    <div class="header-cta">
+      <a href="https://arwrk.net/recruit/hakushinkai/" target="_blank" rel="noopener" class="btn-recruit">求人情報</a>
+      <a href="tel:0486243974" class="btn-tel">☎ <span class="num">048-624-3974</span></a>
+      <a href="https://ssc.doctorqube.com/hakushinkai-yuzawa/" target="_blank" rel="noopener" class="btn btn-accent">Web予約</a>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="en">NEWS</span>
+    <h1>お知らせ一覧</h1>
+    <div class="breadcrumb">
+      <a href="index.html">トップ</a><span>&gt;</span>お知らせ一覧
+    </div>
+  </div>
+</section>
+
+<section class="reveal" style="padding-top: 48px;">
+  <div class="container">
+    <div class="news-wrap">
+
+      <!-- フィルター -->
+      <div class="news-filter">
+        <div class="filter-group">
+          <span class="filter-label">カテゴリ</span>
+          <span class="filter-chip active">すべて</span>
+          <span class="filter-chip">重要</span>
+          <span class="filter-chip">休診情報</span>
+          <span class="filter-chip">予防接種</span>
+          <span class="filter-chip">流行情報</span>
+          <span class="filter-chip">その他</span>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">年</span>
+          <select class="filter-select">
+            <option>すべての年</option>
+            <option>2026年</option>
+            <option>2025年</option>
+            <option>2024年</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- お知らせ一覧 -->
+      <div class="news-list">
+
+        <div class="news-item">
+          <div class="news-date">2026.04.15</div>
+          <div class="news-cat-wrap"><span class="news-cat important">重要</span></div>
+          <div class="news-title-wrap">
+            <div class="news-title">ゴールデンウィーク期間中の休診日について</div>
+            <div class="news-summary">5月3日（日）〜5月6日（水）まで休診とさせていただきます。</div>
+          </div>
+        </div>
+
+        <div class="news-item">
+          <div class="news-date">2026.04.10</div>
+          <div class="news-cat-wrap"><span class="news-cat epidemic">流行情報</span></div>
+          <div class="news-title-wrap">
+            <div class="news-title">花粉症シーズンのご相談を承っています</div>
+            <div class="news-summary">スギ・ヒノキ花粉のピーク時期に入りました。お薬の相談はお気軽にどうぞ。</div>
+          </div>
+        </div>
+
+        <div class="news-item">
+          <div class="news-date">2026.04.01</div>
+          <div class="news-cat-wrap"><span class="news-cat vaccine">予防接種</span></div>
+          <div class="news-title-wrap">
+            <div class="news-title">小児定期予防接種のご予約を受付中です</div>
+            <div class="news-summary">4種混合・MR・水痘・日本脳炎など、各種予防接種の予約を承っています。</div>
+          </div>
+        </div>
+
+        <div class="news-item">
+          <div class="news-date">2026.03.20</div>
+          <div class="news-cat-wrap"><span class="news-cat info">お知らせ</span></div>
+          <div class="news-title-wrap">
+            <div class="news-title">インターネット予約システムのご案内</div>
+            <div class="news-summary">Web予約システムなら24時間いつでもご予約いただけます。</div>
+          </div>
+        </div>
+
+        <div class="news-item">
+          <div class="news-date">2026.03.10</div>
+          <div class="news-cat-wrap"><span class="news-cat closed">休診情報</span></div>
+          <div class="news-title-wrap">
+            <div class="news-title">3月21日（土）は学会出席のため休診いたします</div>
+            <div class="news-summary">ご不便をおかけしますが、ご了承ください。</div>
+          </div>
+        </div>
+
+        <div class="news-item">
+          <div class="news-date">2026.02.15</div>
+          <div class="news-cat-wrap"><span class="news-cat epidemic">流行情報</span></div>
+          <div class="news-title-wrap">
+            <div class="news-title">インフルエンザの流行が続いています</div>
+            <div class="news-summary">発熱・咳の症状がある方は、来院前にお電話ください。発熱外来でご対応いたします。</div>
+          </div>
+        </div>
+
+        <div class="news-item">
+          <div class="news-date">2026.01.20</div>
+          <div class="news-cat-wrap"><span class="news-cat info">お知らせ</span></div>
+          <div class="news-title-wrap">
+            <div class="news-title">さいたま市特定検診の受付を開始しました</div>
+            <div class="news-summary">受診票をお持ちの方は、ご予約のうえお越しください。</div>
+          </div>
+        </div>
+
+        <div class="news-item">
+          <div class="news-date">2025.12.25</div>
+          <div class="news-cat-wrap"><span class="news-cat important">重要</span></div>
+          <div class="news-title-wrap">
+            <div class="news-title">年末年始の休診日のお知らせ</div>
+            <div class="news-summary">12月29日（月）〜1月3日（土）まで休診いたします。1月5日（月）より通常診療を開始します。</div>
+          </div>
+        </div>
+
+        <div class="news-item">
+          <div class="news-date">2025.11.10</div>
+          <div class="news-cat-wrap"><span class="news-cat vaccine">予防接種</span></div>
+          <div class="news-title-wrap">
+            <div class="news-title">インフルエンザワクチンの接種を開始しました</div>
+            <div class="news-summary">ご予約は電話または受付にて承ります。数に限りがありますのでお早めに。</div>
+          </div>
+        </div>
+
+        <div class="news-item">
+          <div class="news-date">2025.10.05</div>
+          <div class="news-cat-wrap"><span class="news-cat info">お知らせ</span></div>
+          <div class="news-title-wrap">
+            <div class="news-title">ホームページをリニューアルしました</div>
+            <div class="news-summary">より見やすく、ご予約しやすいサイトを目指して全面的に更新いたしました。</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ページネーション -->
+      <div class="pagination">
+        <span class="disabled">＜ 前へ</span>
+        <span class="current">1</span>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <span class="ellipsis">…</span>
+        <a href="#">8</a>
+        <a href="#">次へ ＞</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          <div class="logo-text">湯澤医院<small>YUZAWA CLINIC</small></div>
+        </div>
+        <div class="footer-info">
+          <p>〒331-0061 さいたま市西区西遊馬1260-1</p>
+          <p>TEL: 048-624-3974</p>
+          <p>精神科・心療内科・内科・小児科・皮膚科・発熱外来</p>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>サイトメニュー</h4>
+        <ul>
+          <li><a href="index.html">トップ</a></li>
+          <li><a href="about.html">当院について</a></li>
+          <li><a href="index.html#departments">診療科のご案内</a></li>
+          <li><a href="doctors.html">医師紹介</a></li>
+          <li><a href="news.html">お知らせ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>関連リンク</h4>
+        <ul>
+          <li><a href="https://ssc.doctorqube.com/hakushinkai-yuzawa/" target="_blank" rel="noopener">Web予約</a></li>
+          <li><a href="https://arwrk.net/recruit/hakushinkai/" target="_blank" rel="noopener">求人情報</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <a class="group-site-card" href="https://hakushinkai.jp/" target="_blank" rel="noopener">
+      <img src="hakushinkai_logo.png" alt="医療法人 博滇会">
+      <div class="gs-text">
+        <div class="gs-name">医療法人 博滇会グループ</div>
+        <div class="gs-desc">湯澤医院は博滇会グループの一員です。グループサイトはこちら</div>
+      </div>
+      <div class="gs-arrow">→</div>
+    </a>
+
+    <div class="copyright">© 湯澤医院 / 医療法人 博滇会</div>
+  </div>
+</footer>
+
+<a class="floating-reserve" href="https://ssc.doctorqube.com/hakushinkai-yuzawa/" target="_blank" rel="noopener">
+  <span class="pulse"></span>
+  Web予約
+</a>
+
+<div class="mockup-note">
+  <strong>※ モックアップ</strong><br>
+  お知らせ本文は仮置きです。フィルター操作・ページ送りも見た目のみ。
+</div>
+
+<script>
+  document.documentElement.classList.add('js');
+  (function() {
+    var targets = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      targets.forEach(function(el) { el.classList.add('visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
+    targets.forEach(function(el) { io.observe(el); });
+    setTimeout(function() {
+      targets.forEach(function(el) { if (!el.classList.contains('visible')) el.classList.add('visible'); });
+    }, 3000);
+  })();
+
+  // フィルターチップの切り替え（見た目のみ）
+  document.querySelectorAll('.filter-chip').forEach(function(chip) {
+    chip.addEventListener('click', function() {
+      this.parentElement.querySelectorAll('.filter-chip').forEach(function(c) { c.classList.remove('active'); });
+      this.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
