@@ -509,8 +509,124 @@
     margin: 16px auto 0;
   }
 
-  /* ---- 診療科のご案内 ---- */
-  /* 重点2科（大カード） */
+  /* ---- 診療科のご案内 (新構成) ---- */
+  /* 精神科・心療内科 メインカード */
+  .dept-main {
+    background: #fff;
+    border: 2px solid var(--accent);
+    border-radius: 16px;
+    padding: 36px 40px;
+    margin-bottom: 28px;
+    position: relative;
+    box-shadow: 0 6px 24px rgba(178,58,58,0.10);
+  }
+  .dept-main-head {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 14px;
+    border-bottom: 2px solid var(--accent-light);
+    padding-bottom: 18px;
+    margin-bottom: 22px;
+  }
+  .dept-main-title {
+    font-family: "Zen Maru Gothic", sans-serif;
+    font-size: 30px;
+    color: var(--primary-dark);
+    font-weight: 700;
+    line-height: 1.4;
+    flex: 1;
+    min-width: 0;
+  }
+  .dept-main-title small {
+    display: block;
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    margin-bottom: 4px;
+  }
+  .dept-main-tag {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: var(--accent); color: #fff;
+    font-size: 12px; font-weight: 700;
+    padding: 6px 14px; border-radius: 4px;
+    box-shadow: 0 3px 8px rgba(178,58,58,0.25);
+  }
+  .dept-main-tag::before { content: '🏅'; }
+  .dept-main-desc {
+    font-size: 15px; line-height: 1.95;
+    color: var(--text); margin-bottom: 24px;
+  }
+
+  /* 精神科のサブ項目グリッド */
+  .dept-sub-items {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .dept-sub-item {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 16px;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .dept-sub-item:hover { transform: translateY(-2px); border-color: var(--accent); }
+  .dept-sub-item .icon { font-size: 26px; margin-bottom: 8px; }
+  .dept-sub-item .title {
+    font-family: "Zen Maru Gothic", sans-serif;
+    font-size: 15px; font-weight: 700;
+    color: var(--primary-dark); margin-bottom: 4px;
+  }
+  .dept-sub-item .desc { font-size: 11px; color: var(--text-sub); line-height: 1.6; }
+  /* 一押しポイント（認知症） */
+  .dept-sub-item.featured {
+    background: linear-gradient(135deg, #FFF6F4 0%, #fff 100%);
+    border: 2px solid var(--accent);
+    position: relative;
+    box-shadow: 0 4px 14px rgba(178,58,58,0.12);
+  }
+  .dept-sub-item.featured::before {
+    content: '★ 一押し';
+    position: absolute;
+    top: -10px; left: 12px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 10px; font-weight: 700;
+    padding: 3px 10px; border-radius: 3px;
+    letter-spacing: 0.05em;
+  }
+  .dept-sub-item.featured .title { color: var(--accent-dark); font-size: 17px; }
+  .dept-sub-item.featured .desc { color: var(--text); font-weight: 500; }
+  @media (max-width: 760px) {
+    .dept-sub-items { grid-template-columns: 1fr 1fr; }
+  }
+
+  .dept-main-bottom {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 12px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--border);
+  }
+  .dept-main-doctors {
+    flex: 1; min-width: 0;
+    font-size: 13px; color: var(--text-sub);
+  }
+  .dept-main-doctors strong { color: var(--primary-dark); font-weight: 700; }
+
+  /* その他の診療科（4列グリッド） */
+  .dept-others-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .dept-others-row .dept-sub {
+    /* 既存のdept-sub再利用 */
+  }
+  @media (max-width: 760px) {
+    .dept-others-row { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* 重点2科（大カード）— 旧構成、まだ使う場合に備え残置 */
   .dept-featured-label {
     text-align: center;
     font-size: 13px;
@@ -1282,85 +1398,82 @@
       <h2>診療科のご案内</h2>
     </div>
 
-    <!-- 専門医がいる診療（精神科・心療内科 / 認知症相談） -->
-    <div class="dept-featured-label">専門医がいる診療</div>
-    <div class="dept-featured">
-      <div class="dept-card">
-        <div class="ribbon">専門医がいます</div>
-        <div class="cat">PSYCHIATRY / PSYCHOSOMATIC</div>
-        <h3>精神科・心療内科</h3>
-        <p>うつ・不安・不眠などこころの不調や、ストレスが体に影響する症状に、丁寧にお話をうかがい、安心して通院いただける診療を心がけています。お子さまの心のカウンセリングにも対応しています。</p>
-        <ul>
-          <li>うつ病・適応障害</li>
-          <li>不安障害・パニック障害・不眠症</li>
-          <li>ストレス関連のご相談</li>
-          <li>お子さまの心のカウンセリング</li>
-        </ul>
-        <div class="psy-card-notice">
-          <strong>初めて精神科を受診される方へ</strong><br>
-          ご予約・お電話の前に、初診シート（フォーム）のご記入をお願いしています。
-          <br>
-          <a href="#" target="_blank" rel="noopener" class="psy-card-btn">精神科 初診シート　→</a>
+    <!-- 精神科・心療内科 メインカード -->
+    <div class="dept-main">
+      <div class="dept-main-head">
+        <div class="dept-main-title">
+          <small>PSYCHIATRY / PSYCHOSOMATIC</small>
+          精神科・心療内科
         </div>
-        <a href="doctors.html" class="dept-doctor">
-          <div class="dept-doctor-photo">顔写真</div>
-          <div class="dept-doctor-info">
-            <div class="label">担当医 / DOCTOR</div>
-            <div class="name">湯澤 ○○</div>
-            <div class="role">精神科専門医</div>
-          </div>
-          <div class="dept-doctor-arrow">→</div>
-        </a>
       </div>
-      <div class="dept-card">
-        <div class="ribbon">専門医がいます</div>
-        <div class="cat">DEMENTIA CARE</div>
-        <h3>認知症相談</h3>
-        <p>ご本人の変化にお気づきのご家族も、ご本人も安心してご相談いただける外来です。認知症高齢者を抱えるご家族の心配事も、まずはご相談ください。早期発見・早期対応を大切に、生活を支えます。</p>
-        <ul>
-          <li>物忘れ・認知症のご相談</li>
-          <li>認知機能検査</li>
-          <li>ご家族への対応アドバイス</li>
-          <li>介護・福祉との連携</li>
-        </ul>
-        <a href="doctors.html" class="dept-doctor">
-          <div class="dept-doctor-photo">顔写真</div>
-          <div class="dept-doctor-info">
-            <div class="label">担当医 / DOCTOR</div>
-            <div class="name">湯澤 ○○</div>
-            <div class="role">認知症サポート医</div>
-          </div>
-          <div class="dept-doctor-arrow">→</div>
-        </a>
+      <p class="dept-main-desc">
+        うつ・不安・不眠など、こころの不調から、ストレスが体に影響する症状まで幅広く対応します。<br>
+        お子さまの心のカウンセリングや、認知症についてのご相談まで、まずはお気軽にお話をお聞かせください。
+      </p>
+
+      <div class="dept-sub-items">
+        <div class="dept-sub-item featured">
+          <div class="icon">🌿</div>
+          <div class="title">認知症相談</div>
+          <div class="desc">早期発見・早期対応／ご家族のご相談も</div>
+        </div>
+        <div class="dept-sub-item">
+          <div class="icon">🌙</div>
+          <div class="title">睡眠障害</div>
+          <div class="desc">不眠・眠りの質のご相談</div>
+        </div>
+        <div class="dept-sub-item">
+          <div class="icon">🤍</div>
+          <div class="title">うつ・不安</div>
+          <div class="desc">うつ病・パニック障害・適応障害</div>
+        </div>
+        <div class="dept-sub-item">
+          <div class="icon">🧒</div>
+          <div class="title">お子さまの心</div>
+          <div class="desc">カウンセリング・発達のご相談</div>
+        </div>
+      </div>
+
+      <div class="psy-card-notice">
+        <strong>初めて精神科を受診される方へ</strong><br>
+        ご予約・お電話の前に、初診シート（フォーム）のご記入をお願いしています。
+        <br>
+        <a href="#" target="_blank" rel="noopener" class="psy-card-btn">精神科 初診シート　→</a>
+      </div>
+
+      <div class="dept-main-bottom">
+        <div class="dept-main-doctors">
+          <strong>担当医：</strong>院長・中村・湯澤美菜（精神保健指定医・認知症サポート医ほか）
+        </div>
+        <a href="doctors.html" class="btn btn-primary" style="padding: 10px 20px; font-size: 13px;">医師紹介 →</a>
       </div>
     </div>
 
     <!-- その他の診療科 -->
-    <div class="dept-others-label">その他の診療科</div>
-    <div class="dept-others" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="dept-others-row">
       <div class="dept-sub">
         <div class="cat">INTERNAL MEDICINE</div>
         <h4>内科</h4>
         <p>かぜ・発熱などの急な症状から、生活習慣病の管理まで幅広く対応します。</p>
-        <div class="dept-sub-doctor">担当：湯澤 ○○　<a href="doctors.html">医師紹介 →</a></div>
+        <div class="dept-sub-doctor">担当：山本・峰岸ほか　<a href="doctors.html">医師紹介 →</a></div>
       </div>
       <div class="dept-sub">
         <div class="cat">PEDIATRICS</div>
         <h4>小児科</h4>
         <p>お子さまの急な発熱、予防接種、乳幼児健診などに対応します。</p>
-        <div class="dept-sub-doctor">担当：湯澤 ○○　<a href="doctors.html">医師紹介 →</a></div>
+        <div class="dept-sub-doctor">担当：山本ほか　<a href="doctors.html">医師紹介 →</a></div>
       </div>
       <div class="dept-sub">
         <div class="cat">DERMATOLOGY</div>
         <h4>皮膚科</h4>
-        <p>湿疹・かぶれ・にきびなど、日常的な皮膚トラブルのご相談を承ります。</p>
-        <div class="dept-sub-doctor">担当：湯澤 ○○　<a href="doctors.html">医師紹介 →</a></div>
+        <p>湿疹・かぶれ・にきびなど、日常的な皮膚トラブルのご相談を承ります（金曜のみ）。</p>
+        <div class="dept-sub-doctor">担当：麻生　<a href="doctors.html">医師紹介 →</a></div>
       </div>
       <div class="dept-sub">
         <div class="cat">FEVER CLINIC</div>
         <h4>発熱外来</h4>
         <p>発熱症状のある方向けの外来です。来院前にお電話でご連絡ください。</p>
-        <div class="dept-sub-doctor">担当：湯澤 ○○　<a href="doctors.html">医師紹介 →</a></div>
+        <div class="dept-sub-doctor">担当：内科医師　<a href="doctors.html">医師紹介 →</a></div>
       </div>
     </div>
   </div>
@@ -1377,7 +1490,7 @@
       <div class="service-item">さいたま市特定検診</div>
       <div class="service-item">各種検査</div>
       <div class="service-item">予防接種</div>
-      <div class="service-item">在宅医療・訪問診療</div>
+      <div class="service-item">訪問診療（在宅医療）</div>
       <div class="service-item">心理相談</div>
       <div class="service-item">栄養相談</div>
     </div>
@@ -1522,76 +1635,4 @@
         </div>
         <div class="footer-info">
           <p>〒331-0061 さいたま市西区西遊馬1260-1</p>
-          <p>TEL: 048-624-3974</p>
-          <p>精神科・心療内科・内科・小児科・皮膚科・発熱外来</p>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>サイトメニュー</h4>
-        <ul>
-          <li><a href="#">トップ</a></li>
-          <li><a href="#departments">診療科のご案内</a></li>
-          <li><a href="doctors.html">医師紹介</a></li>
-          <li><a href="about.html">医院紹介</a></li>
-          <li><a href="news.html">お知らせ</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>関連リンク</h4>
-        <ul>
-          <li><a href="https://ssc.doctorqube.com/hakushinkai-yuzawa/" target="_blank" rel="noopener">Web予約</a></li>
-          <li><a href="https://arwrk.net/recruit/hakushinkai/" target="_blank" rel="noopener">求人情報</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- グループサイトへの導線 -->
-    <a class="group-site-card" href="https://hakushinkai.jp/" target="_blank" rel="noopener">
-      <img src="hakushinkai_logo.png" alt="医療法人 博滇会">
-      <div class="gs-text">
-        <div class="gs-name">医療法人 博滇会グループ</div>
-        <div class="gs-desc">湯澤医院は博滇会グループの一員です。グループサイトはこちら</div>
-      </div>
-      <div class="gs-arrow">→</div>
-    </a>
-
-    <div class="copyright">© 湯澤医院 / 医療法人 博滇会</div>
-  </div>
-</footer>
-
-<!-- 画面右下に固定するWeb予約ボタン -->
-<a class="floating-reserve" href="https://ssc.doctorqube.com/hakushinkai-yuzawa/" target="_blank" rel="noopener">
-  <span class="pulse"></span>
-  Web予約
-</a>
-
-<!-- モックアップ用の注釈 -->
-<div class="mockup-note" style="bottom:90px;">
-  <strong>※ モックアップ</strong><br>
-  写真は仮ストック（Unsplash）。Web予約・電話・地図は実リンクで動作します。
-</div>
-
-<script>
-  // JSが動くときだけアニメ用のクラスを付ける（未対応環境では普通に表示）
-  document.documentElement.classList.add('js');
-  (function() {
-    var targets = document.querySelectorAll('.reveal');
-    if (!('IntersectionObserver' in window)) {
-      targets.forEach(function(el) { el.classList.add('visible'); });
-      return;
-    }
-    var io = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
-    targets.forEach(function(el) { io.observe(el); });
-    // 念のため：3秒後にまだ見えていないものは強制的に表示
-    setTimeout(function() {
-      targets.forEach(function(el) { if (!el.classList.contains('visible')) el.classList.add('visible'); });
-    }, 3000);
-  })();
-</script>
+          <p>TEL: 
