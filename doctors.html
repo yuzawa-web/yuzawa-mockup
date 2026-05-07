@@ -27,18 +27,15 @@
   a { color: inherit; text-decoration: none; }
   img { max-width: 100%; display: block; }
   .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
-
   .js .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
   .js .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* トップ帯 */
+  /* トップ帯・ヘッダー */
   .topbar { background: var(--primary-dark); color: #fff; font-size: 13px; }
   .topbar .container { display: flex; justify-content: space-between; align-items: center; padding: 8px 24px; }
   .topbar .info { display: flex; gap: 24px; }
   .topbar .info span { opacity: 0.9; }
   @media (max-width: 760px) { .topbar .info { display: none; } }
-
-  /* ヘッダー */
   .header { background: #fff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
   .header .container { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; }
   .logo { display: flex; align-items: center; gap: 14px; }
@@ -90,169 +87,147 @@
   .breadcrumb span { margin: 0 8px; opacity: 0.6; }
 
   /* セクション共通 */
-  section { padding: 64px 0; }
+  section { padding: 56px 0; }
   .sec-head { text-align: center; margin-bottom: 36px; }
   .sec-head .en { display: block; font-size: 13px; color: var(--accent); font-weight: 700; letter-spacing: 0.3em; margin-bottom: 8px; }
   .sec-head h2 { font-family: "Zen Maru Gothic", sans-serif; font-size: 28px; color: var(--primary-dark); font-weight: 700; line-height: 1.5; }
   .sec-head h2::after { content: ''; display: block; width: 50px; height: 3px; background: var(--accent); margin: 16px auto 0; }
 
   .intro-lead {
-    text-align: center;
-    font-size: 16px;
-    line-height: 2;
-    max-width: 760px;
-    margin: 0 auto 12px;
+    text-align: center; font-size: 15px; line-height: 2.1;
+    max-width: 760px; margin: 0 auto 12px;
   }
 
-  /* 医師カード */
-  .doctors-list { display: flex; flex-direction: column; gap: 56px; }
-  .doctor-card {
+  /* 院長フィーチャーカード */
+  .doctor-featured {
     display: grid;
-    grid-template-columns: 320px 1fr;
-    gap: 40px;
-    align-items: start;
+    grid-template-columns: 280px 1fr;
+    gap: 36px;
     background: #fff;
     border: 1px solid var(--border);
+    border-left: 5px solid var(--accent);
     border-radius: 16px;
-    overflow: hidden;
     padding: 0;
-    box-shadow: 0 4px 16px rgba(30, 58, 112, 0.06);
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(30, 58, 112, 0.08);
+    margin-bottom: 36px;
   }
-  .doctor-card.reverse { grid-template-columns: 1fr 320px; }
-  .doctor-photo {
-    position: relative;
+  .doctor-featured .photo {
     aspect-ratio: 3/4;
     background: linear-gradient(135deg, var(--primary-light) 0%, #fff 100%);
-    overflow: hidden;
-  }
-  .doctor-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .doctor-photo-placeholder {
-    position: absolute; inset: 0;
     display: flex; align-items: center; justify-content: center;
-    color: var(--text-sub);
-    font-size: 13px;
+    color: var(--text-sub); font-size: 13px;
   }
-  .doctor-photo-placeholder span {
-    padding: 10px 18px;
-    background: rgba(255,255,255,0.85);
-    border: 1px dashed var(--primary);
-    border-radius: 4px;
+  .doctor-featured .photo span {
+    padding: 8px 16px; background: rgba(255,255,255,0.85);
+    border: 1px dashed var(--primary); border-radius: 4px;
   }
-  .doctor-info { padding: 36px 36px 36px 0; }
-  .doctor-card.reverse .doctor-info { padding: 36px 0 36px 36px; }
+  .doctor-featured .info { padding: 32px 32px 32px 0; }
   @media (max-width: 760px) {
-    .doctor-card, .doctor-card.reverse { grid-template-columns: 1fr; gap: 0; }
-    .doctor-info, .doctor-card.reverse .doctor-info { padding: 28px 24px 32px; }
+    .doctor-featured { grid-template-columns: 1fr; }
+    .doctor-featured .info { padding: 24px; }
   }
-
-  .doctor-roles {
-    display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px;
+  .doctor-featured .roles { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .doctor-featured .roles span {
+    background: var(--primary-light); color: var(--primary-dark);
+    font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 3px; letter-spacing: 0.05em;
   }
-  .doctor-roles span {
-    background: var(--primary-light);
-    color: var(--primary-dark);
-    font-size: 11px;
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 3px;
-    letter-spacing: 0.05em;
-  }
-  .doctor-roles .role-main {
-    background: var(--accent);
-    color: #fff;
-  }
-  .doctor-name {
+  .doctor-featured .roles .role-main { background: var(--accent); color: #fff; }
+  .doctor-featured .name {
     font-family: "Zen Maru Gothic", sans-serif;
-    font-size: 26px;
-    font-weight: 700;
-    color: var(--primary-dark);
-    margin-bottom: 2px;
-    line-height: 1.4;
+    font-size: 26px; font-weight: 700; color: var(--primary-dark);
+    margin-bottom: 4px; line-height: 1.4;
   }
-  .doctor-name-sub {
-    font-size: 13px;
-    color: var(--text-sub);
-    letter-spacing: 0.1em;
-    margin-bottom: 18px;
-  }
-  .doctor-specialty {
-    background: var(--bg-soft);
-    border-left: 3px solid var(--primary);
-    padding: 10px 14px;
-    font-size: 13px;
-    color: var(--text);
-    margin-bottom: 18px;
-    border-radius: 4px;
-  }
-  .doctor-specialty strong { color: var(--primary-dark); margin-right: 6px; }
-  .doctor-message {
-    font-size: 14px;
-    line-height: 2;
-    color: var(--text);
-    margin-bottom: 22px;
-  }
+  .doctor-featured .ed { font-size: 14px; color: var(--text-sub); margin-bottom: 16px; }
+  .doctor-featured .quals h4 { font-size: 12px; color: var(--accent); font-weight: 700; letter-spacing: 0.2em; margin-bottom: 6px; font-family: "Zen Maru Gothic", sans-serif; }
+  .doctor-featured .quals ul { list-style: none; font-size: 13px; line-height: 1.95; margin-bottom: 12px; }
+  .doctor-featured .quals ul li { padding: 2px 0; }
+  .doctor-featured .quals ul li::before { content: '・'; color: var(--primary); margin-right: 4px; }
 
-  .doctor-meta { border-top: 1px solid var(--border); padding-top: 20px; }
-  .meta-block { margin-bottom: 16px; }
-  .meta-block:last-child { margin-bottom: 0; }
-  .meta-block h4 {
-    font-family: "Zen Maru Gothic", sans-serif;
-    font-size: 13px;
-    color: var(--accent);
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    margin-bottom: 6px;
+  /* 通常医師カード（グリッド） */
+  .doctors-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
   }
-  .meta-block ul {
-    list-style: none;
-    font-size: 13px;
-    color: var(--text);
-    line-height: 1.95;
-  }
-  .meta-block ul li { padding: 2px 0; }
-  .meta-block ul li::before { content: '・'; color: var(--primary); margin-right: 4px; }
-
-  /* コラムへのリンク */
-  .doctor-column-link {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    background: var(--primary-light);
+  @media (max-width: 900px) { .doctors-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .doctors-grid { grid-template-columns: 1fr; } }
+  .doctor-card {
+    background: #fff;
     border: 1px solid var(--border);
-    border-left: 4px solid var(--primary);
-    border-radius: 8px;
-    padding: 14px 18px;
-    margin-bottom: 20px;
-    transition: all 0.2s;
-    color: inherit;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
   }
-  .doctor-column-link:hover { background: #fff; border-color: var(--primary); transform: translateX(2px); }
-  .doctor-column-link .dcl-icon { font-size: 22px; flex-shrink: 0; }
-  .doctor-column-link .dcl-text { flex: 1; }
-  .doctor-column-link .dcl-text strong { display: block; font-size: 14px; color: var(--primary-dark); font-weight: 700; margin-bottom: 2px; }
-  .doctor-column-link .dcl-text small { font-size: 11px; color: var(--text-sub); }
-  .doctor-column-link .dcl-arrow { color: var(--primary); font-size: 18px; flex-shrink: 0; transition: transform 0.2s; }
-  .doctor-column-link:hover .dcl-arrow { transform: translateX(4px); }
-
-  /* 英語対応マーク */
-  .english-tag {
+  .doctor-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(30, 58, 112, 0.08); }
+  .doctor-card .photo {
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, var(--primary-light) 0%, #fff 100%);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-sub); font-size: 12px;
+  }
+  .doctor-card .photo span { padding: 6px 12px; background: rgba(255,255,255,0.85); border: 1px dashed var(--primary); border-radius: 4px; font-size: 11px; }
+  .doctor-card .body { padding: 20px 22px 22px; }
+  .doctor-card .roles { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+  .doctor-card .roles span {
+    font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 3px;
+    background: var(--primary-light); color: var(--primary-dark); letter-spacing: 0.05em;
+  }
+  .doctor-card .roles .role-main { background: var(--accent); color: #fff; }
+  .doctor-card .name {
+    font-family: "Zen Maru Gothic", sans-serif;
+    font-size: 19px; font-weight: 700; color: var(--primary-dark);
+    margin-bottom: 4px; line-height: 1.4;
+  }
+  .doctor-card .ed { font-size: 12px; color: var(--text-sub); margin-bottom: 10px; line-height: 1.7; }
+  .doctor-card .quals { font-size: 12px; line-height: 1.85; color: var(--text); }
+  .doctor-card .quals li { padding: 1px 0; list-style: none; }
+  .doctor-card .quals li::before { content: '・'; color: var(--primary); margin-right: 3px; }
+  .doctor-card .english-tag {
     display: inline-block;
-    background: var(--primary);
-    color: #fff;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 3px 10px;
-    border-radius: 3px;
-    margin-left: 8px;
+    background: var(--primary); color: #fff;
+    font-size: 9px; font-weight: 700;
+    padding: 2px 7px; border-radius: 3px;
+    margin-left: 4px;
     letter-spacing: 0.05em;
   }
 
-  /* お問い合わせCTA */
+  /* 部門ヘッダー */
+  .dept-section { margin-bottom: 64px; }
+  .dept-section:last-of-type { margin-bottom: 0; }
+  .dept-section-head {
+    display: flex; align-items: center; gap: 14px;
+    padding-bottom: 14px;
+    margin-bottom: 28px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .dept-section-head h3 {
+    font-family: "Zen Maru Gothic", sans-serif;
+    font-size: 22px;
+    color: var(--primary-dark);
+    font-weight: 700;
+  }
+  .dept-section-head .en {
+    font-size: 11px; color: var(--accent);
+    font-weight: 700; letter-spacing: 0.2em;
+  }
+  .dept-section-head .count {
+    margin-left: auto;
+    font-size: 12px; color: var(--text-sub);
+  }
+
+  /* スタッフ部分 */
+  .staff-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 600px) { .staff-grid { grid-template-columns: 1fr; } }
+
+  /* CTA */
   .cta-bottom {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    color: #fff;
-    text-align: center;
-    padding: 64px 0;
+    color: #fff; text-align: center; padding: 64px 0;
   }
   .cta-bottom h2 { font-family: "Zen Maru Gothic", sans-serif; font-size: 26px; margin-bottom: 14px; font-weight: 700; }
   .cta-bottom p { font-size: 15px; opacity: 0.95; margin-bottom: 28px; }
@@ -261,12 +236,9 @@
   .cta-tel {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 16px 30px;
-    background: rgba(255,255,255,0.15);
-    border: 2px solid #fff;
+    background: rgba(255,255,255,0.15); border: 2px solid #fff;
     border-radius: 40px;
-    font-size: 16px;
-    font-weight: 700;
-    color: #fff;
+    font-size: 16px; font-weight: 700; color: #fff;
   }
   .cta-tel:hover { background: #fff; color: var(--primary-dark); }
 
@@ -294,12 +266,24 @@
     .footer-grid { grid-template-columns: 1fr; gap: 32px; }
     .group-site-card { flex-direction: column; text-align: center; }
   }
-
-  /* フローティングWeb予約 */
   .floating-reserve { position: fixed; right: 16px; bottom: 24px; background: var(--accent); color: #fff; padding: 14px 22px; border-radius: 50px; font-size: 14px; font-weight: 700; box-shadow: 0 6px 20px rgba(178,58,58,0.45); z-index: 200; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.2s, box-shadow 0.2s; }
   .floating-reserve:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(178,58,58,0.55); background: var(--accent-dark); }
   .floating-reserve .pulse { width: 10px; height: 10px; background: #FFD6D6; border-radius: 50%; animation: pulse 1.6s ease-in-out infinite; }
   @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.3); } }
+
+  /* コラムリンク */
+  .doctor-column-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 8px;
+    font-size: 11px; font-weight: 700;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 5px 10px;
+    border-radius: 3px;
+    transition: all 0.2s;
+  }
+  .doctor-column-link:hover { background: var(--primary); color: #fff; }
+  .doctor-column-link::after { content: '→'; }
 
   .mockup-note { position: fixed; bottom: 90px; right: 16px; background: rgba(30, 58, 112, 0.95); color: #fff; padding: 10px 16px; border-radius: 8px; font-size: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.2); z-index: 1000; max-width: 280px; line-height: 1.6; }
   .mockup-note strong { color: #FFD6D6; }
@@ -341,8 +325,8 @@
 
 <section class="page-hero">
   <div class="container">
-    <span class="en">DOCTORS</span>
-    <h1>医師紹介</h1>
+    <span class="en">DOCTORS &amp; STAFF</span>
+    <h1>医師・スタッフ紹介</h1>
     <div class="breadcrumb">
       <a href="index.html">トップ</a><span>&gt;</span>医師紹介
     </div>
@@ -352,172 +336,329 @@
 <section class="reveal">
   <div class="container">
     <div class="sec-head">
-      <span class="en">OUR DOCTORS</span>
-      <h2>担当医のご紹介</h2>
+      <span class="en">OUR TEAM</span>
+      <h2>湯澤医院のチーム</h2>
     </div>
     <p class="intro-lead">
-      湯澤医院では、精神科・心療内科・内科・小児科・皮膚科の診療を、それぞれの分野の専門医がチームで担当しています。<br>
-      ご相談内容に応じてもっとも適した医師がお話をうかがいます。
+      湯澤医院では、精神科・心療内科、内科、小児科、皮膚科、それぞれの分野の専門医・認定医が連携して診療にあたっています。<br>
+      ご相談内容に応じて、最も適した医師がお話をうかがいます。
     </p>
   </div>
 </section>
 
-<section class="reveal" style="padding-top:0;">
+<section class="reveal" style="padding-top: 0;">
   <div class="container">
-    <div class="doctors-list">
 
-      <!-- 医師1：院長 -->
-      <div class="doctor-card">
-        <div class="doctor-photo">
-          <div class="doctor-photo-placeholder"><span>院長 顔写真</span></div>
+    <!-- 精神科・心療内科 -->
+    <div class="dept-section">
+      <div class="dept-section-head">
+        <div>
+          <div class="en">PSYCHIATRY / PSYCHOSOMATIC</div>
+          <h3>精神科・心療内科</h3>
         </div>
-        <div class="doctor-info">
-          <div class="doctor-roles">
+        <div class="count">3名</div>
+      </div>
+
+      <!-- 院長 -->
+      <div class="doctor-featured">
+        <div class="photo"><span>院長 顔写真</span></div>
+        <div class="info">
+          <div class="roles">
             <span class="role-main">院長</span>
-            <span>精神科専門医</span>
+            <span>精神保健指定医</span>
             <span>認知症サポート医</span>
+            <span>医学博士</span>
           </div>
-          <div class="doctor-name">湯澤 ○○</div>
-          <div class="doctor-name-sub">YUZAWA ○○</div>
-          <div class="doctor-specialty">
-            <strong>専門：</strong>精神科 / 心療内科 / 認知症相談
-          </div>
-          <div class="doctor-message">
-            「いつもとちょっと違うな」と感じたときに、気軽に相談できるかかりつけ診療所でありたいと思っています。お子さまの心のご相談から認知症のご家族のご相談まで、まずはお話をお聞かせください。一緒に良い形を考えていきましょう。
-          </div>
-          <div class="doctor-meta">
-            <div class="meta-block">
-              <h4>経歴</h4>
-              <ul>
-                <li>○○大学医学部 卒業</li>
-                <li>○○大学附属病院 精神神経科 勤務</li>
-                <li>○○病院 精神科 勤務</li>
-                <li>20○○年 湯澤医院 院長就任</li>
-              </ul>
-            </div>
-            <div class="meta-block">
-              <h4>資格</h4>
-              <ul>
-                <li>精神科専門医</li>
-                <li>認知症サポート医</li>
-                <li>○○認定医</li>
-              </ul>
-            </div>
-            <div class="meta-block">
-              <h4>所属学会</h4>
-              <ul>
-                <li>日本精神神経学会</li>
-                <li>日本認知症学会</li>
-                <li>日本心身医学会</li>
-              </ul>
-            </div>
+          <div class="name">湯澤 俊　<small style="font-size:14px; color:var(--text-sub); font-weight:400;">YUZAWA Shun</small></div>
+          <div class="ed">東邦大学薬学部・医学部 卒業</div>
+          <div class="quals">
+            <h4>資格・役職</h4>
+            <ul>
+              <li>医学博士</li>
+              <li>精神保健指定医</li>
+              <li>認知症サポート医</li>
+              <li>医療法人 博滇会 理事長</li>
+              <li>社会福祉法人 俊江会 西遊馬保育園 理事長</li>
+            </ul>
           </div>
         </div>
       </div>
 
-      <!-- 医師2：内科・小児科担当 -->
-      <div class="doctor-card reverse">
-        <div class="doctor-info">
-          <div class="doctor-roles">
-            <span class="role-main">医師</span>
-            <span>内科専門医</span>
-            <span>小児科対応</span>
-          </div>
-          <div class="doctor-name">湯澤 ○○</div>
-          <div class="doctor-name-sub">YUZAWA ○○</div>
-          <div class="doctor-specialty">
-            <strong>専門：</strong>内科 / 小児科 / 一般診療
-          </div>
-          <div class="doctor-message">
-            日々の体調管理から、急な発熱や生活習慣病の管理まで、幅広く対応しております。お子さまも、ご年配の方も、その方に合った治療をご一緒に考えていきます。気になることはどんなことでもお気軽にどうぞ。
-          </div>
-          <a href="https://hakushinkai.jp/column/5583/" target="_blank" rel="noopener" class="doctor-column-link">
-            <span class="dcl-icon">📝</span>
-            <span class="dcl-text">
-              <strong>この医師のコラムを読む</strong>
-              <small>博滇会グループサイトの「時節のエッセイ」へ</small>
-            </span>
-            <span class="dcl-arrow">→</span>
-          </a>
-          <div class="doctor-meta">
-            <div class="meta-block">
-              <h4>経歴</h4>
-              <ul>
-                <li>○○大学医学部 卒業</li>
-                <li>○○病院 内科 勤務</li>
-                <li>○○病院 小児科 勤務</li>
-                <li>20○○年 湯澤医院 着任</li>
-              </ul>
+      <!-- 中村・湯澤美菜 -->
+      <div class="doctors-grid">
+        <div class="doctor-card">
+          <div class="photo"><span>顔写真</span></div>
+          <div class="body">
+            <div class="roles">
+              <span class="role-main">医師</span>
+              <span>精神保健指定医</span>
+              <span>専門医</span>
             </div>
-            <div class="meta-block">
-              <h4>資格</h4>
-              <ul>
-                <li>内科専門医</li>
-                <li>○○認定医</li>
-              </ul>
-            </div>
-            <div class="meta-block">
-              <h4>所属学会</h4>
-              <ul>
-                <li>日本内科学会</li>
-                <li>日本小児科学会</li>
-              </ul>
-            </div>
+            <div class="name">中村 晃士<br><small style="font-size:11px; color:var(--text-sub); font-weight:400;">NAKAMURA Koji</small></div>
+            <div class="ed">東京慈恵会医科大学 卒業<br>東京慈恵会医科大学 大学院 卒業</div>
+            <ul class="quals">
+              <li>医学博士</li>
+              <li>精神保健指定医</li>
+              <li>日本精神神経学会専門医</li>
+              <li>日本児童青年精神医学会認定医</li>
+              <li>子どものこころ専門医</li>
+              <li>認知症サポート医</li>
+            </ul>
           </div>
         </div>
-        <div class="doctor-photo">
-          <div class="doctor-photo-placeholder"><span>医師 顔写真</span></div>
-        </div>
-      </div>
 
-      <!-- 医師3：山本医師（英語対応） -->
-      <div class="doctor-card">
-        <div class="doctor-photo">
-          <div class="doctor-photo-placeholder"><span>山本医師 顔写真</span></div>
-        </div>
-        <div class="doctor-info">
-          <div class="doctor-roles">
-            <span class="role-main">医師</span>
-            <span>英語対応<span class="english-tag">EN</span></span>
-          </div>
-          <div class="doctor-name">山本 ○○</div>
-          <div class="doctor-name-sub">YAMAMOTO ○○</div>
-          <div class="doctor-specialty">
-            <strong>専門：</strong>内科 / 一般診療 ／ English consultation available
-          </div>
-          <div class="doctor-message">
-            英語での診療にも対応しております。日本語が不安な方も、ご家族と一緒に、安心して受診いただけます。English speakers are welcomed. Please contact us by phone.
-          </div>
-          <div class="doctor-meta">
-            <div class="meta-block">
-              <h4>経歴</h4>
-              <ul>
-                <li>○○大学医学部 卒業</li>
-                <li>○○病院 内科 勤務</li>
-                <li>20○○年 湯澤医院 着任</li>
-              </ul>
+        <div class="doctor-card">
+          <div class="photo"><span>顔写真</span></div>
+          <div class="body">
+            <div class="roles">
+              <span class="role-main">医師</span>
+              <span>精神保健指定医</span>
             </div>
-            <div class="meta-block">
-              <h4>資格</h4>
-              <ul>
-                <li>内科専門医</li>
-              </ul>
-            </div>
-            <div class="meta-block">
-              <h4>所属学会</h4>
-              <ul>
-                <li>日本内科学会</li>
-              </ul>
-            </div>
+            <div class="name">湯澤 美菜<br><small style="font-size:11px; color:var(--text-sub); font-weight:400;">YUZAWA Mina</small></div>
+            <div class="ed">東邦大学医学部 卒業</div>
+            <ul class="quals">
+              <li>精神保健指定医</li>
+              <li>認知症サポート医</li>
+            </ul>
+            <a href="https://hakushinkai.jp/column/5583/" target="_blank" rel="noopener" class="doctor-column-link">時節のエッセイを読む</a>
           </div>
         </div>
       </div>
-
     </div>
+
+    <!-- 内科・発熱外来・小児科 -->
+    <div class="dept-section">
+      <div class="dept-section-head">
+        <div>
+          <div class="en">INTERNAL MEDICINE / FEVER / PEDIATRICS</div>
+          <h3>内科・発熱外来・小児科</h3>
+        </div>
+        <div class="count">8名</div>
+      </div>
+      <div class="doctors-grid">
+
+        <div class="doctor-card">
+          <div class="photo"><span>顔写真</span></div>
+          <div class="body">
+            <div class="roles">
+              <span class="role-main">医師</span>
+              <span>英語対応<span class="english-tag">EN</span></span>
+            </div>
+            <div class="name">山本 真<br><small style="font-size:11px; color:var(--text-sub); font-weight:400;">YAMAMOTO Makoto</small></div>
+            <div class="ed">東邦大学医学部 卒業</div>
+            <ul class="quals">
+              <li>東邦大学医学部 小児科学教室 小児循環器病担当</li>
+              <li>（旧）国立小児医療研究センター</li>
+              <li>米国ジョンスホプキンス大学・ワシントン大学で循環生理学研究</li>
+              <li>2004年以降 湯澤医院で内科・小児科診療</li>
+            </ul>
+            <p style="margin-top:8px; font-size:11px; color:var(--primary); font-weight:700;">English speakers are welcomed.</p>
+          </div>
+        </div>
+
+        <div class="doctor-card">
+          <div class="photo"><span>顔写真</span></div>
+          <div class="body">
+            <div class="roles">
+              <span class="role-main">医師</span>
+              <span>内科認定医</span>
+            </div>
+            <div class="name">峰岸 敦子<br><small style="font-size:11px; color:var(--text-sub); font-weight:400;">MINEGISHI Atsuko</small></div>
+            <div class="ed">東邦大学医学部 卒業</div>
+            <ul class="quals">
+              <li>日本内科学会認定内科医</li>
+              <li>日本スポーツ協会認定スポーツドクター</li>
+              <li>日本医師会認定健康スポーツ医</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="doctor-card">
+          <div class="photo"><span>顔写真</span></div>
+          <div class="body">
+            <div class="roles">
+              <span class="role-main">医師</span>
+              <span>糖尿病専門医</span>
+              <span>医学博士</span>
+            </div>
+            <div class="name">村田 美保<br><small style="font-size:11px; color:var(--text-sub); font-weight:400;">MURATA Miho</small></div>
+            <div class="ed">帝京大学医学部 卒業<br>自治医科大学大学院 修了</div>
+            <ul class="quals">
+              <li>医学博士</li>
+              <li>日本内科学会 総合内科専門医</li>
+              <li>日本糖尿病学会 糖尿病専門医</li>
+              <li>日本内分泌学会 内分泌代謝科専門医</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="doctor-card">
+          <div class="photo"><span>顔写真</span></div>
+          <div class="body">
+            <div class="roles">
+              <span class="role-main">医師</span>
+              <span>循環器専門医</span>
+            </div>
+            <div class="name">内藤 和寛<br><small style="font-size:11px; color:var(--text-sub); font-weight:400;">NAITO Kazuhiro</small></div>
+            <div class="ed">筑波大学医学部 卒業</div>
+            <ul class="quals">
+              <li>外科専門医</li>
+              <li>循環器専門医</li>
+              <li>認知症サポート医</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="doctor-card">
+          <div class="photo"><span>顔写真</span></div>
+          <div class="body">
+            <div class="roles">
+              <span class="role-main">医師</span>
+            </div>
+            <div class="name">浅井 緋花里<br><small style="font-size:11px; color:var(--text-sub); font-weight:400;">ASAI Hikari</small></div>
+            <div class="ed">2019年 埼玉医科大学 卒業<br>2021年 埼玉医科大学総合医療センター 総合心療内科 入局</div>
+            <ul class="quals">
+              <li>感染症学会</li>
+              <li>プライマリケア学会</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="doctor-card">
+          <div class="photo"><span>顔写真</span></div>
+          <div class="body">
+            <div class="roles">
+              <span class="role-main">医師</span>
+              <span>循環器専門医</span>
+            </div>
+            <div class="name">吉﨑 隆道<br><small style="font-size:11px; color:var(--text-sub); font-weight:400;">YOSHIZAKI Takamichi</small></div>
+            <div class="ed">東邦大学医学部 卒業</div>
+            <ul class="quals">
+              <li>外科専門医</li>
+              <li>循環器専門医</li>
+              <li>離床学会認定医</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="doctor-card">
+          <div class="photo"><span>顔写真</span></div>
+          <div class="body">
+            <div class="roles">
+              <span class="role-main">検査担当</span>
+              <span>心臓血管外科</span>
+            </div>
+            <div class="name">安達 秀雄<br><small style="font-size:11px; color:var(--text-sub); font-weight:400;">ADACHI Hideo</small></div>
+            <div class="ed">順天堂大学医学部 卒業</div>
+            <ul class="quals">
+              <li>心臓血管外科名誉専門医</li>
+              <li>自治医科大学 名誉教授</li>
+              <li>前 自治医科大学さいたま医療センター 副センター長</li>
+              <li>練馬光が丘病院 副病院長</li>
+              <li>担当：心臓超音波検査（第2土曜午前）</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="doctor-card">
+          <div class="photo"><span>顔写真</span></div>
+          <div class="body">
+            <div class="roles">
+              <span class="role-main">検査担当</span>
+              <span>消化器専門医</span>
+            </div>
+            <div class="name">甲嶋 洋平<br><small style="font-size:11px; color:var(--text-sub); font-weight:400;">KOJIMA Yohei</small></div>
+            <div class="ed">千葉大学医学部 卒業</div>
+            <ul class="quals">
+              <li>日本内科学会 専門医・指導医</li>
+              <li>日本消化器病学会 専門医・指導医</li>
+              <li>日本肝臓学会 専門医・指導医</li>
+              <li>日本消化器内視鏡学会 専門医</li>
+              <li>担当：腹部超音波検査（第3火・第4土午前）</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 皮膚科 -->
+    <div class="dept-section">
+      <div class="dept-section-head">
+        <div>
+          <div class="en">DERMATOLOGY</div>
+          <h3>皮膚科</h3>
+        </div>
+        <div class="count">1名（金曜のみ）</div>
+      </div>
+      <div class="doctors-grid">
+        <div class="doctor-card">
+          <div class="photo"><span>顔写真</span></div>
+          <div class="body">
+            <div class="roles">
+              <span class="role-main">医師</span>
+              <span>皮膚科専門医</span>
+              <span>漢方専門医</span>
+            </div>
+            <div class="name">麻生 悠子<br><small style="font-size:11px; color:var(--text-sub); font-weight:400;">ASOH Yuko</small></div>
+            <div class="ed">順天堂大学医学部 卒業</div>
+            <ul class="quals">
+              <li>日本皮膚科学会認定 皮膚科専門医</li>
+              <li>日本東洋医学認定 漢方専門医</li>
+              <li>診療日：金曜 15:00〜18:00</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 心理士・PSW -->
+    <div class="dept-section">
+      <div class="dept-section-head">
+        <div>
+          <div class="en">PSYCHOLOGIST / SOCIAL WORKER</div>
+          <h3>心理士・精神保健福祉士</h3>
+        </div>
+        <div class="count">2名</div>
+      </div>
+      <div class="staff-grid">
+        <div class="doctor-card">
+          <div class="photo"><span>顔写真</span></div>
+          <div class="body">
+            <div class="roles">
+              <span class="role-main">精神保健福祉士</span>
+            </div>
+            <div class="name">武矢 由美子<br><small style="font-size:11px; color:var(--text-sub); font-weight:400;">TAKEYA Yumiko</small></div>
+            <div class="ed">専修大学 卒業<br>東京国際福祉専門学校 卒業</div>
+            <ul class="quals">
+              <li>精神保健福祉士</li>
+              <li>ご家族の相談・社会資源とのつなぎ役</li>
+            </ul>
+          </div>
+        </div>
+        <div class="doctor-card">
+          <div class="photo"><span>顔写真</span></div>
+          <div class="body">
+            <div class="roles">
+              <span class="role-main">臨床心理士</span>
+              <span>公認心理師</span>
+            </div>
+            <div class="name">小野 貴子<br><small style="font-size:11px; color:var(--text-sub); font-weight:400;">ONO Takako</small></div>
+            <div class="ed">学習院大学 卒業</div>
+            <ul class="quals">
+              <li>臨床心理士</li>
+              <li>公認心理師</li>
+              <li>カウンセリング・心理検査・箱庭療法・遊戯療法</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- お問い合わせCTA -->
+<!-- CTA -->
 <section class="cta-bottom reveal">
   <div class="container">
     <h2>気になることがあれば、まずはご相談ください</h2>
@@ -566,4 +707,47 @@
       <img src="hakushinkai_logo.png" alt="医療法人 博滇会">
       <div class="gs-text">
         <div class="gs-name">医療法人 博滇会グループ</div>
-     
+        <div class="gs-desc">湯澤医院は博滇会グループの一員です。グループサイトはこちら</div>
+      </div>
+      <div class="gs-arrow">→</div>
+    </a>
+
+    <div class="copyright">© 湯澤医院 / 医療法人 博滇会</div>
+  </div>
+</footer>
+
+<a class="floating-reserve" href="https://ssc.doctorqube.com/hakushinkai-yuzawa/" target="_blank" rel="noopener">
+  <span class="pulse"></span>
+  Web予約
+</a>
+
+<div class="mockup-note">
+  <strong>※ モックアップ</strong><br>
+  実情報を反映しました。顔写真は仮置き、医師の最新情報は要確認。
+</div>
+
+<script>
+  document.documentElement.classList.add('js');
+  (function() {
+    var targets = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      targets.forEach(function(el) { el.classList.add('visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
+    targets.forEach(function(el) { io.observe(el); });
+    setTimeout(function() {
+      targets.forEach(function(el) { if (!el.classList.contains('visible')) el.classList.add('visible'); });
+    }, 3000);
+  })();
+</script>
+
+</body>
+</html>
