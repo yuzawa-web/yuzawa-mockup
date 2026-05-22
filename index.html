@@ -1749,7 +1749,7 @@
       <div class="psy-first-icon">📝</div>
       <div class="psy-first-text">
         <strong>精神科を初めて受診の方へ</strong>
-        <p>ご予約の前に、まずは初診シートのご記入をお願いしております。<br>下のボタンからフォームにアクセスしてご送信ください。</p>
+        <p>ご予約の前に、まずは初診シートのご記入をお願いしております。<br>右のボタンからフォームにアクセスしてご送信ください。</p>
       </div>
       <a href="#" target="_blank" rel="noopener" class="btn psy-first-btn">精神科 初診シート　→</a>
     </div>
@@ -1915,4 +1915,20 @@
       targets.forEach(function(el) { el.classList.add('visible'); });
       return;
     }
-    var io = new Intersection
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
+    targets.forEach(function(el) { io.observe(el); });
+    // 念のため：3秒後にまだ見えていないものは強制的に表示
+    setTimeout(function() {
+      targets.forEach(function(el) { if (!el.classList.contains('visible')) el.classList.add('visible'); });
+    }, 3000);
+  })();
+</script>
+</body>
+</html>
