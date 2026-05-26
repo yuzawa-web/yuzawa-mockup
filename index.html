@@ -158,10 +158,10 @@
     .header-cta .btn-tel .num { display: none; }
   }
 
-  /* ---- ヒーロー（背景写真の自動切り替え） ---- */
+  /* ---- ヒーロー（写真主役・テキスト下寄せ） ---- */
   .hero {
     position: relative;
-    min-height: 460px;
+    min-height: 780px;
     color: #fff;
     overflow: hidden;
     background-color: var(--primary-dark);
@@ -180,7 +180,10 @@
   .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(30,58,112,0.72) 0%, rgba(30,58,112,0.45) 50%, rgba(178,58,58,0.35) 100%);
+    /* 写真を主役に。下〜左のテキスト部分だけ少し暗くして読みやすく */
+    background:
+      linear-gradient(0deg, rgba(20,40,80,0.66) 0%, rgba(20,40,80,0.18) 42%, rgba(20,40,80,0) 62%),
+      linear-gradient(90deg, rgba(20,40,80,0.35) 0%, rgba(20,40,80,0.05) 45%, rgba(20,40,80,0) 65%);
     z-index: 1;
   }
   @keyframes heroFade {
@@ -239,9 +242,14 @@
   .hero .container {
     position: relative;
     z-index: 2;
-    padding: 88px 24px;
-    max-width: 820px;
-    text-align: center;
+    min-height: 780px;
+    padding: 48px 24px 56px;
+    max-width: 1120px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
   }
   .hero-badge {
     display: inline-block;
@@ -249,31 +257,34 @@
     font-weight: 700;
     letter-spacing: 0.2em;
     color: #fff;
-    background: rgba(178,58,58,0.9);
+    background: rgba(178,58,58,0.92);
     padding: 6px 16px;
     border-radius: 2px;
     margin-bottom: 22px;
   }
   .hero h1 {
     font-family: "Zen Maru Gothic", sans-serif;
-    font-size: 42px;
+    font-size: 44px;
     font-weight: 700;
     color: #fff;
     line-height: 1.5;
-    margin-bottom: 22px;
     letter-spacing: 0.04em;
-    text-shadow: 0 2px 16px rgba(0,0,0,0.4);
+    margin: 0 0 22px;
+    text-shadow: 0 2px 18px rgba(0,0,0,0.5);
   }
   .hero h1 .highlight { color: #FFD6D6; }
   .hero .lead {
-    font-size: 16px;
+    font-size: 15px;
     color: rgba(255,255,255,0.95);
-    margin: 0 auto 32px;
-    line-height: 2;
-    max-width: 680px;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    margin: 0 0 28px;
+    line-height: 1.95;
+    max-width: 560px;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.4);
   }
-  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; justify-content: flex-start; }
+  @media (max-width: 760px) {
+    .hero h1 { font-size: 30px; }
+  }
   .hero-cta .btn-outline { background: rgba(255,255,255,0.1); color: #fff; border-color: #fff; }
   .hero-cta .btn-outline:hover { background: #fff; color: var(--primary-dark); }
 
@@ -1460,10 +1471,7 @@
   <div class="container">
     <div class="hero-badge">創業86年　地域とともに</div>
     <h1>何でも相談できる<br><span class="highlight">かかりつけ診療所</span>として</h1>
-    <p class="lead">
-      昭和5年の開院以来、さいたま市西区西遊馬で地域の皆さまの健康と暮らしを支え続けてまいりました。<br>
-      赤ちゃんからご高齢の方まで、こころと体の両面から、保健・医療・福祉を包括したチーム医療をご提供します。
-    </p>
+    <p class="lead">昭和5年の開院以来、赤ちゃんからご高齢の方まで、こころと体の両面を支えるチーム医療をご提供しています。</p>
     <div class="hero-cta">
       <a href="https://ssc.doctorqube.com/hakushinkai-yuzawa/" target="_blank" rel="noopener" class="btn btn-accent btn-large">Web予約はこちら</a>
       <a href="#departments" class="btn btn-outline btn-large">診療のご案内</a>
@@ -1927,8 +1935,4 @@
     // 念のため：3秒後にまだ見えていないものは強制的に表示
     setTimeout(function() {
       targets.forEach(function(el) { if (!el.classList.contains('visible')) el.classList.add('visible'); });
-    }, 3000);
-  })();
-</script>
-</body>
-</html>
+    }, 3000)
