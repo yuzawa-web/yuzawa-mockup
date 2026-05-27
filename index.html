@@ -294,6 +294,30 @@
     .hero .lead { font-size: 14px; }
   }
 
+  /* ---- ヒーロー直下の紹介文 ---- */
+  .intro-message {
+    background: var(--bg-soft);
+    padding: 56px 24px;
+    text-align: center;
+  }
+  .intro-message .container { max-width: 880px; }
+  .intro-message p {
+    font-family: "Zen Maru Gothic", sans-serif;
+    font-size: 22px;
+    line-height: 2.2;
+    color: var(--primary-dark);
+    margin: 0;
+    letter-spacing: 0.06em;
+  }
+  .intro-message .highlight {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  @media (max-width: 760px) {
+    .intro-message p { font-size: 16px; line-height: 2; }
+    .intro-message { padding: 40px 20px; }
+  }
+
   /* ---- 診療時間カード ---- */
   .schedule-bar {
     background: #fff;
@@ -1469,13 +1493,23 @@
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="container">
-    <div class="hero-badge">創業86年　地域とともに</div>
-    <h1>何でも相談できる<br><span class="highlight">かかりつけ診療所</span>として</h1>
-    <p class="lead">昭和5年の開院以来、赤ちゃんからご高齢の方まで、こころと体の両面を支えるチーム医療をご提供しています。</p>
+    <div class="hero-badge">医療法人 博滇会グループ</div>
+    <h1>～この街の一生に応える～</h1>
     <div class="hero-cta">
       <a href="https://ssc.doctorqube.com/hakushinkai-yuzawa/" target="_blank" rel="noopener" class="btn btn-accent btn-large">Web予約はこちら</a>
       <a href="#departments" class="btn btn-outline btn-large">診療のご案内</a>
     </div>
+  </div>
+</section>
+
+<!-- ヒーロー直下の紹介文 -->
+<section class="intro-message reveal">
+  <div class="container">
+    <p>
+      昭和5年の開院から<span class="highlight">創業86年</span>。<br>
+      子どもの発達のことから介護のことまで、<br>
+      なんでも相談できる、<span class="highlight">あなたのかかりつけ診療所</span>として。
+    </p>
   </div>
 </section>
 
@@ -1917,22 +1951,4 @@
 <script>
   // JSが動くときだけアニメ用のクラスを付ける（未対応環境では普通に表示）
   document.documentElement.classList.add('js');
-  (function() {
-    var targets = document.querySelectorAll('.reveal');
-    if (!('IntersectionObserver' in window)) {
-      targets.forEach(function(el) { el.classList.add('visible'); });
-      return;
-    }
-    var io = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
-    targets.forEach(function(el) { io.observe(el); });
-    // 念のため：3秒後にまだ見えていないものは強制的に表示
-    setTimeout(function() {
-      targets.forEach(function(el) { if (!el.classList.contains('visible')) el.classList.add('visible'); });
-    }, 3000)
+  (functio
