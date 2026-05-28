@@ -161,9 +161,9 @@
   /* ---- ヒーロー（写真主役・テキスト下寄せ／1画面に収める） ---- */
   .hero {
     position: relative;
-    height: calc(100vh - 76px);
-    min-height: 520px;
-    max-height: 820px;
+    height: 78vh;
+    min-height: 440px;
+    max-height: 640px;
     color: #fff;
     overflow: hidden;
     background-color: var(--primary-dark);
@@ -290,7 +290,7 @@
   .hero-cta .btn-outline:hover { background: #fff; color: var(--primary-dark); }
 
   @media (max-width: 860px) {
-    .hero { height: calc(100vh - 64px); min-height: 460px; max-height: 720px; }
+    .hero { height: 70vh; min-height: 400px; max-height: 560px; }
     .hero h1 { font-size: 28px; }
     .hero .container { padding: 32px 24px 40px; }
     .hero .lead { font-size: 14px; }
@@ -1955,4 +1955,32 @@
 <!-- モックアップ用の注釈 -->
 <div class="mockup-note" style="bottom:90px;">
   <strong>※ モックアップ</strong><br>
-  写真は仮ストック（Unsplash）。Web予約・電話・地図は実リン
+  写真は仮ストック（Unsplash）。Web予約・電話・地図は実リンクで動作します。
+</div>
+
+<script>
+  // JSが動くときだけアニメ用のクラスを付ける（未対応環境では普通に表示）
+  document.documentElement.classList.add('js');
+  (function() {
+    var targets = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      targets.forEach(function(el) { el.classList.add('visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
+    targets.forEach(function(el) { io.observe(el); });
+    // 念のため：3秒後にまだ見えていないものは強制的に表示
+    setTimeout(function() {
+      targets.forEach(function(el) { if (!el.classList.contains('visible')) el.classList.add('visible'); });
+    }, 3000);
+  })();
+</script>
+</body>
+</html>
