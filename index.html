@@ -1593,7 +1593,7 @@
         <h2>地域に根差した、チーム医療。</h2>
         <p>86年の歴史の中で培ってきた経験と地域との絆を大切に、保健・医療・福祉を包括した「何でも相談できる診療所」を目指しています。</p>
       </div>
-      <a href="about.html" class="btn btn-primary about-mini-btn">医院紹介を詳しく見る</a>
+      <a href="about.html" class="btn btn-primary about-mini-btn">当院について詳しく見る</a>
     </div>
   </div>
 </section>
@@ -1952,4 +1952,56 @@
           <li><a href="about.html">医院紹介</a></li>
           <li><a href="news.html">お知らせ</a></li>
         </ul>
-     
+      </div>
+      <div class="footer-col">
+        <h4>関連リンク</h4>
+        <ul>
+          <li><a href="https://ssc.doctorqube.com/hakushinkai-yuzawa/" target="_blank" rel="noopener">Web予約</a></li>
+          <li><a href="https://arwrk.net/recruit/hakushinkai/" target="_blank" rel="noopener">求人情報</a></li>
+          <li><a href="https://hakushinkai.jp/" target="_blank" rel="noopener">博滇会グループサイト</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- グループサイトへの導線 -->
+    <a class="group-site-card" href="https://hakushinkai.jp/" target="_blank" rel="noopener">
+      <img src="hakushinkai_logo.png" alt="医療法人 博滇会">
+      <div class="gs-text">
+        <div class="gs-name">医療法人 博滇会グループ</div>
+        <div class="gs-desc">湯澤医院は博滇会グループの一員です。グループサイトはこちら</div>
+      </div>
+      <div class="gs-arrow">→</div>
+    </a>
+
+    <div class="copyright">© 湯澤医院 / 医療法人 博滇会</div>
+  </div>
+</footer>
+
+<!-- モックアップ用の注釈 -->
+<div class="mockup-note" style="bottom:24px;">
+  <strong>※ モックアップ</strong><br>
+  写真は仮ストック（Unsplash）。Web予約・電話・地図は実リンクで動作します。
+</div>
+
+
+<script>
+(function(){
+  var targets = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    targets.forEach(function(el){ el.classList.add('visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
+  targets.forEach(function(el){ io.observe(el); });
+})();
+</script>
+
+</body>
+</html>
