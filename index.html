@@ -158,10 +158,12 @@
     .header-cta .btn-tel .num { display: none; }
   }
 
-  /* ---- ヒーロー（写真主役・テキスト下寄せ） ---- */
+  /* ---- ヒーロー（写真主役・テキスト下寄せ／1画面に収める） ---- */
   .hero {
     position: relative;
-    min-height: 780px;
+    height: calc(100vh - 76px);
+    min-height: 520px;
+    max-height: 820px;
     color: #fff;
     overflow: hidden;
     background-color: var(--primary-dark);
@@ -172,11 +174,10 @@
     background-size: cover;
     background-position: center;
     opacity: 0;
-    animation: heroFade 18s infinite;
+    animation: heroFade 12s infinite;
   }
   .hero-bg:nth-child(1) { background-image: url('hero_clinic.jpg'); animation-delay: 0s; }
   .hero-bg:nth-child(2) { background-image: url('hero_clinic2.jpg'); animation-delay: 6s; }
-  .hero-bg:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1600&q=80&auto=format&fit=crop'); animation-delay: 12s; }
   .hero-overlay {
     position: absolute;
     inset: 0;
@@ -187,8 +188,8 @@
     z-index: 1;
   }
   @keyframes heroFade {
-    0%, 28% { opacity: 1; transform: scale(1); }
-    35%, 95% { opacity: 0; transform: scale(1.04); }
+    0%, 42% { opacity: 1; transform: scale(1); }
+    50%, 92% { opacity: 0; transform: scale(1.04); }
     100% { opacity: 1; transform: scale(1); }
   }
   .hero::after { content: none !important; }
@@ -242,7 +243,7 @@
   .hero .container {
     position: relative;
     z-index: 2;
-    min-height: 780px;
+    height: 100%;
     padding: 48px 24px 56px;
     max-width: 1120px;
     width: 100%;
@@ -289,8 +290,9 @@
   .hero-cta .btn-outline:hover { background: #fff; color: var(--primary-dark); }
 
   @media (max-width: 860px) {
+    .hero { height: calc(100vh - 64px); min-height: 460px; max-height: 720px; }
     .hero h1 { font-size: 28px; }
-    .hero .container { padding: 56px 24px; }
+    .hero .container { padding: 32px 24px 40px; }
     .hero .lead { font-size: 14px; }
   }
 
@@ -313,9 +315,18 @@
     color: var(--accent);
     font-weight: 700;
   }
+  .intro-cta {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
   @media (max-width: 760px) {
     .intro-message p { font-size: 16px; line-height: 2; }
     .intro-message { padding: 40px 20px; }
+    .intro-cta { margin-bottom: 28px; gap: 10px; }
+    .intro-cta .btn-large { padding: 14px 24px; font-size: 15px; }
   }
 
   /* ---- 診療時間カード ---- */
@@ -1490,21 +1501,20 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-bg"></div>
-  <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="container">
     <div class="hero-badge">医療法人 博滇会グループ</div>
     <h1>～この街の一生に応える～</h1>
-    <div class="hero-cta">
-      <a href="https://ssc.doctorqube.com/hakushinkai-yuzawa/" target="_blank" rel="noopener" class="btn btn-accent btn-large">Web予約はこちら</a>
-      <a href="#departments" class="btn btn-outline btn-large">診療のご案内</a>
-    </div>
   </div>
 </section>
 
 <!-- ヒーロー直下の紹介文 -->
 <section class="intro-message reveal">
   <div class="container">
+    <div class="intro-cta">
+      <a href="https://ssc.doctorqube.com/hakushinkai-yuzawa/" target="_blank" rel="noopener" class="btn btn-accent btn-large">Web予約はこちら</a>
+      <a href="#departments" class="btn btn-outline btn-large">診療のご案内</a>
+    </div>
     <p>
       昭和5年の開院から<span class="highlight">創業86年</span>。<br>
       子どもの発達のことから介護のことまで、<br>
@@ -1945,10 +1955,4 @@
 <!-- モックアップ用の注釈 -->
 <div class="mockup-note" style="bottom:90px;">
   <strong>※ モックアップ</strong><br>
-  写真は仮ストック（Unsplash）。Web予約・電話・地図は実リンクで動作します。
-</div>
-
-<script>
-  // JSが動くときだけアニメ用のクラスを付ける（未対応環境では普通に表示）
-  document.documentElement.classList.add('js');
-  (functio
+  写真は仮ストック（Unsplash）。Web予約・電話・地図は実リン
