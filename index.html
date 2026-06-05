@@ -1134,13 +1134,34 @@
   @media (max-width: 680px) {
     .floating-reserve { padding: 12px 18px; font-size: 13px; }
   }
-  .reserve::before {
-    content: '';
+  /* 小さな三角形をちりばめる */
+  .reserve .tri-deco {
     position: absolute;
-    top: -100px; right: -100px;
-    width: 400px; height: 400px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 50%;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .reserve .tri-deco span {
+    position: absolute;
+    display: block;
+    background: rgba(255,255,255,0.08);
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  }
+  .reserve .tri-deco span:nth-child(1)  { top: 8%;   left: 3%;   width: 90px;  height: 90px;  transform: rotate(15deg); }
+  .reserve .tri-deco span:nth-child(2)  { top: 30%;  left: 20%;  width: 55px;  height: 55px;  transform: rotate(-25deg); background: rgba(255,255,255,0.12); }
+  .reserve .tri-deco span:nth-child(3)  { top: 62%;  left: 5%;   width: 120px; height: 120px; transform: rotate(40deg); }
+  .reserve .tri-deco span:nth-child(4)  { top: 48%;  left: 24%;  width: 40px;  height: 40px;  transform: rotate(-10deg); background: rgba(255,255,255,0.14); }
+  .reserve .tri-deco span:nth-child(5)  { top: 4%;   right: 6%;  width: 105px; height: 105px; transform: rotate(-15deg); }
+  .reserve .tri-deco span:nth-child(6)  { top: 36%;  right: 4%;  width: 70px;  height: 70px;  transform: rotate(60deg); background: rgba(255,255,255,0.12); }
+  .reserve .tri-deco span:nth-child(7)  { top: 70%;  right: 18%; width: 95px;  height: 95px;  transform: rotate(-40deg); }
+  .reserve .tri-deco span:nth-child(8)  { top: 84%;  right: 6%;  width: 48px;  height: 48px;  transform: rotate(20deg); background: rgba(255,255,255,0.15); }
+  .reserve .tri-deco span:nth-child(9)  { top: 14%;  left: 48%;  width: 46px;  height: 46px;  transform: rotate(180deg); background: rgba(255,255,255,0.14); }
+  .reserve .tri-deco span:nth-child(10) { top: 84%;  left: 45%;  width: 62px;  height: 62px;  transform: rotate(-30deg); }
+  @media (max-width: 760px) {
+    .reserve .tri-deco span:nth-child(n+7) { display: none; }
+    .reserve .tri-deco span:nth-child(1) { width: 56px; height: 56px; }
+    .reserve .tri-deco span:nth-child(3) { width: 70px; height: 70px; }
+    .reserve .tri-deco span:nth-child(5) { width: 60px; height: 60px; }
   }
   .reserve .container { position: relative; text-align: center; }
   .reserve .en { color: #FFB3B3; font-size: 13px; font-weight: 700; letter-spacing: 0.3em; margin-bottom: 8px; display: block; }
@@ -1812,6 +1833,10 @@
 
 <!-- Web予約 -->
 <section class="reserve reveal">
+  <div class="tri-deco" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
   <div class="container">
     <span class="reserve-hot-label">▶ いちばん便利</span>
     <span class="en">ONLINE RESERVATION</span>
@@ -1956,52 +1981,4 @@
       <div class="footer-col">
         <h4>関連リンク</h4>
         <ul>
-          <li><a href="https://ssc.doctorqube.com/hakushinkai-yuzawa/" target="_blank" rel="noopener">Web予約</a></li>
-          <li><a href="https://arwrk.net/recruit/hakushinkai/" target="_blank" rel="noopener">求人情報</a></li>
-          <li><a href="https://hakushinkai.jp/" target="_blank" rel="noopener">博滇会グループサイト</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- グループサイトへの導線 -->
-    <a class="group-site-card" href="https://hakushinkai.jp/" target="_blank" rel="noopener">
-      <img src="hakushinkai_logo.png" alt="医療法人 博滇会">
-      <div class="gs-text">
-        <div class="gs-name">医療法人 博滇会グループ</div>
-        <div class="gs-desc">湯澤医院は博滇会グループの一員です。グループサイトはこちら</div>
-      </div>
-      <div class="gs-arrow">→</div>
-    </a>
-
-    <div class="copyright">© 湯澤医院 / 医療法人 博滇会</div>
-  </div>
-</footer>
-
-<!-- モックアップ用の注釈 -->
-<div class="mockup-note" style="bottom:24px;">
-  <strong>※ モックアップ</strong><br>
-  写真は仮ストック（Unsplash）。Web予約・電話・地図は実リンクで動作します。
-</div>
-
-
-<script>
-(function(){
-  var targets = document.querySelectorAll('.reveal');
-  if (!('IntersectionObserver' in window)) {
-    targets.forEach(function(el){ el.classList.add('visible'); });
-    return;
-  }
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
-  targets.forEach(function(el){ io.observe(el); });
-})();
-</script>
-
-</body>
-</html>
+     
